@@ -7,14 +7,15 @@ package modelos;
 
 
 
-import javax.persistence.*;
+/*import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlRootElement;*/
 import java.io.Serializable;
 
 /**
  * Created by andrea on 27/02/16.
  */
+/*
 @Entity
 @Table(name = "cliente")
 @XmlRootElement
@@ -25,28 +26,31 @@ import java.io.Serializable;
         @NamedQuery(name = "Cliente.findByEmail", query = "SELECT c FROM Cliente c WHERE c.email = :email"),
         @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre"),
         @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.idCliente = :id")})
+*/
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 7053141853120409654L;
 
-    @Id
+/*    @Id
     @Column(name = "id_cliente")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
     private Integer idCliente;
 
+/*
     @NotNull
     @Column(name = "nombre")
+*/
     private String nombre;
 
-    @NotNull
-    @Column(name = "apellidos")
+/*    @NotNull
+    @Column(name = "apellidos")*/
     private String apellidos;
 
-    @NotNull
-    @Column(name = "cedula")
+/*    @NotNull
+    @Column(name = "cedula")*/
     private String cedula;
 
-    @Column(name = "email")
+/*    @Column(name = "email")*/
     private String email;
 
     public Cliente() {

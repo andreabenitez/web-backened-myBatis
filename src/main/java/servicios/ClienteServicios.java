@@ -21,6 +21,10 @@ import java.util.logging.Logger;
 @Stateless
 public class ClienteServicios {
 
+
+
+
+
     @PersistenceContext(unitName = "persistenciaApp")
     private EntityManager entityManager;
 
