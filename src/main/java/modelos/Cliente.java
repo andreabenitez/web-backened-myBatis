@@ -31,10 +31,10 @@ public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 7053141853120409654L;
 
-/*    @Id
-    @Column(name = "id_cliente")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
-    private Integer idCliente;
+    /*    @Id
+        @Column(name = "id_cliente")
+        @GeneratedValue(strategy = GenerationType.IDENTITY)*/
+    private Integer id_cliente;
 
 /*
     @NotNull
@@ -56,14 +56,12 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-
-
-    public Integer getIdCliente() {
-        return idCliente;
+    public Integer getId_cliente() {
+        return id_cliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
+    public void setId_cliente(Integer id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public String getNombre() {

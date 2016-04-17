@@ -1,3 +1,4 @@
+/*
 package servicios;
 
 import excepciones.NoExisteProductoException;
@@ -20,9 +21,11 @@ import javax.ws.rs.core.Response;
 import java.util.Iterator;
 import java.util.List;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 @Stateless
 @LocalBean
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -116,3 +119,4 @@ public class ProductoServicios {
         return entityManager.merge(producto);
     }
 }
+*/

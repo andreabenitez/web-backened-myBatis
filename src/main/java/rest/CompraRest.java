@@ -1,3 +1,4 @@
+/*
 package rest;
 
 
@@ -11,9 +12,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 
 @Path("/compras")
 public class CompraRest {
@@ -33,3 +36,4 @@ public class CompraRest {
         return compraServicios.agregarCompra(compra);
     }
 }
+*/

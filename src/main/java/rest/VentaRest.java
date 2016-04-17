@@ -1,3 +1,4 @@
+/*
 package rest;
 
 import modelos.Venta;
@@ -9,9 +10,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 @Path("/ventas")
 public class VentaRest {
 
@@ -30,3 +33,4 @@ public class VentaRest {
         return ventaServicios.agregarVenta(venta);
     }
 }
+*/

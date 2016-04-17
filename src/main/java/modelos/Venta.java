@@ -1,3 +1,4 @@
+/*
 package modelos;
 
 import javax.persistence.*;
@@ -6,9 +7,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.List;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 
 @Entity
 @Table(name = "venta")
@@ -96,3 +99,4 @@ public class Venta implements Serializable {
 
 
 }
+*/

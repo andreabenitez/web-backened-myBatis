@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -25,27 +26,33 @@ public class ClienteRest {
     @Inject
     private ClienteServicios clienteServicios;
 
-    /**
+/*
+    */
+/**
      * Lista todos los clientes
      * @return List<Cliente>
      */
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Cliente> listarClientes() {
+    public List<Cliente> listarClientes() throws IOException{
          return clienteServicios.getClientes();
     }
 
-    /**
+
+/**
      * Crea un cliente
      * @param cliente
      * @return
-     */
+     *//*
+
     @POST
     @Consumes("application/json")
     public Cliente crearCliente(Cliente cliente) {
         clienteServicios.agregarCliente(cliente);
         return cliente;
     }
+*/
 
     /**
      * Retorna un cliente de acuerdo al id recibido como parametro
@@ -55,8 +62,8 @@ public class ClienteRest {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Cliente buscarCliente(@PathParam("id") Integer id) {
-        return clienteServicios.buscarCliente(id);
+    public Cliente buscarCliente(@PathParam("id") Integer id) throws IOException{
+        return clienteServicios.selectClienteById(id);
     }
 
     /**
@@ -64,24 +71,28 @@ public class ClienteRest {
      * @param clienteModificado
      * @return
      */
+
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Cliente modificarCliente(Cliente clienteModificado) {
-        return clienteServicios.modificarCliente(clienteModificado);
+    public Response modificarCliente(Cliente clienteModificado) throws IOException {
+        clienteServicios.modificarCliente(clienteModificado);
+        return Response.status(200).build();
     }
 
-    /**
+/**
      * Eliminar cliente
      * @param id
      * @return
      */
+
     @DELETE
     @Path("{id}")
-    public Response eliminarCliente(@PathParam("id") Integer id) {
+    public Response eliminarCliente(@PathParam("id") int id) throws IOException{
         clienteServicios.eliminarCliente(id);
         return Response.status(200).build();
     }
+
 
 
 }

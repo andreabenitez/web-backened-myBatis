@@ -1,3 +1,4 @@
+/*
 package modelos;
 
 import javax.persistence.*;
@@ -68,3 +69,4 @@ public class Pago implements Serializable {
 	}
 
 }
+*/

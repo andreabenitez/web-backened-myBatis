@@ -1,3 +1,4 @@
+/*
 package servicios;
 
 
@@ -13,9 +14,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 @Stateless
 public class ProveedorServicios {
 
@@ -55,3 +58,4 @@ public class ProveedorServicios {
         return entityManager.merge(proveedor);
     }
 }
+*/

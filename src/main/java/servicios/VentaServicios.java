@@ -1,3 +1,4 @@
+/*
 package servicios;
 
 import excepciones.NoExisteProductoException;
@@ -18,9 +19,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class VentaServicios {
@@ -114,3 +117,4 @@ public class VentaServicios {
         }
     }
 }
+*/

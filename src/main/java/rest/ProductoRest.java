@@ -1,3 +1,4 @@
+/*
 package rest;
 
 import excepciones.NoExisteProductoException;
@@ -16,9 +17,11 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 @Path("/productos")
 public class ProductoRest {
 
@@ -83,3 +86,4 @@ public class ProductoRest {
         return Response.status(200).build();
     }
 }
+*/

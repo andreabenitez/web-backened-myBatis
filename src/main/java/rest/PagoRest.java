@@ -1,3 +1,4 @@
+/*
 package rest;
 
 import modelos.Pago;
@@ -37,3 +38,4 @@ public class PagoRest {
     }
 
 }
+*/

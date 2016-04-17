@@ -1,3 +1,4 @@
+/*
 package modelos;
 
 import org.hibernate.annotations.Check;
@@ -8,9 +9,11 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 @Entity
 @Table(name = "ventadetalle")
 @XmlRootElement
@@ -70,3 +73,4 @@ public class VentaDetalle implements Serializable{
     }
 
 }
+*/

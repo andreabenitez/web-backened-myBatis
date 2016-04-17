@@ -1,3 +1,4 @@
+/*
 package modelos;
 
 import javax.persistence.*;
@@ -5,9 +6,11 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+*/
 /**
  * Created by sonia on 13/03/16.
- */
+ *//*
+
 @Entity
 @Table(name = "productoduplicado")
 @XmlRootElement
@@ -66,3 +69,4 @@ public class ProductoDuplicado implements Serializable{
         this.cantidad = cantidad;
     }
 }
+*/

@@ -15,12 +15,14 @@ import java.io.InputStream;
  */
 public class SqlSessionFactoryProvider {
 
+    private static SqlSessionFactory sqlSessionFactory;
+
     @Produces
     @ApplicationScoped
-    public SqlSessionFactory produceFactory() throws IOException {
+    public static SqlSessionFactory produceFactory() throws IOException {
         String resource = "database-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         return sqlSessionFactory;
     }
 

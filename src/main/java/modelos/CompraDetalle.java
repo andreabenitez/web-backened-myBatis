@@ -1,3 +1,4 @@
+/*
 package modelos;
 
 import servicios.ProductoServicios;
@@ -7,9 +8,11 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+*/
 /**
  * Created by andrea on 29/02/16.
- */
+ *//*
+
 @Entity
 @Table(name = "compradetalle")
 @XmlRootElement
@@ -68,3 +71,4 @@ public class CompraDetalle implements Serializable {
     }
 
 }
+*/

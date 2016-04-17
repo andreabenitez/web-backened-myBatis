@@ -1,3 +1,4 @@
+/*
 package servicios;
 
 import modelos.Producto;
@@ -9,9 +10,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+*/
 /**
  * Created by sonia on 14/03/16.
- */
+ *//*
+
 @Stateless
 @LocalBean
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -67,3 +70,4 @@ public class ProductoDuplicadoServicios {
 
 
 }
+*/
