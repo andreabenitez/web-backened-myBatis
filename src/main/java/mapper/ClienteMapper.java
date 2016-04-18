@@ -11,4 +11,5 @@ public interface ClienteMapper {
     public Cliente selectClienteById(int id);
     public List<Cliente> getCliente();
     public void modificarCliente(Cliente cliente);
+    public void agregarCliente(Cliente cliente);
 }

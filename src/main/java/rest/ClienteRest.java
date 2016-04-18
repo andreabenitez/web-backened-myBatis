@@ -44,15 +44,14 @@ public class ClienteRest {
      * Crea un cliente
      * @param cliente
      * @return
-     *//*
+     */
 
     @POST
     @Consumes("application/json")
-    public Cliente crearCliente(Cliente cliente) {
+    public void crearCliente(Cliente cliente) throws IOException{
         clienteServicios.agregarCliente(cliente);
-        return cliente;
     }
-*/
+
 
     /**
      * Retorna un cliente de acuerdo al id recibido como parametro

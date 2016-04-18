@@ -57,12 +57,17 @@ public class ClienteServicios {
         }
         return listaC;
     }
-/*
-    public  Cliente agregarCliente(Cliente cliente){
-        entityManager.persist(cliente);
-        return cliente;
+
+    public  void agregarCliente(Cliente cliente) throws IOException{
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+            sqlSession.insert("agregarCliente", cliente);
+        } finally {
+            sqlSession.close();
+        }
     }
-*/
+
     public String eliminarCliente(int id_cliente) throws IOException{
         SqlSession sqlSession = null;
         try {

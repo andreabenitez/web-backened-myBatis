@@ -12,6 +12,11 @@
         select * from cliente
     </select>
 
+    <insert id="agregarCliente" parameterType="modelos.Cliente" useGeneratedKeys="true" keyProperty="id_cliente">
+        insert into cliente (nombre, apellidos, cedula, email)
+        values (#{nombre}, #{apellidos}, #{cedula}, #{email});
+    </insert>
+
     <update id="modificarCliente" parameterType="modelos.Cliente">
         update cliente set
         nombre = #{nombre},
