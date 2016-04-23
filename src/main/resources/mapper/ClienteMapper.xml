@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.ClienteMapper">
 
+<!--    sentencias sq para cliente-->
     <select id="selectClienteById" parameterType="int" resultType="modelos.Cliente">
         select * from cliente where id_cliente = #{id}
     </select>

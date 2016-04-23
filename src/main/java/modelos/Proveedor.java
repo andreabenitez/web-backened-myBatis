@@ -2,8 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- *//*
-
+ */
 package modelos;
 
 import javax.persistence.*;
@@ -12,65 +11,48 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 
-*/
 /**
  * Created by andrea on 27/02/16.
- *//*
+ */
 
-@Entity
-@Table(name = "proveedor")
-@XmlRootElement
-@NamedQueries({
-        @NamedQuery(name = "Proveedor.findAll", query = "SELECT p FROM Proveedor p"),
-        @NamedQuery(name = "Proveedor.findById", query = "SELECT p FROM Proveedor p WHERE p.idProveedor = :idProveedor")
-})
 public class Proveedor implements Serializable {
 
     private static final long serialVersionUID = 7032183068501280419L;
 
-    @Id
-    @Column(name = "id_proveedor")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProveedor;
+    private Integer id_proveedor;
 
-    @NotNull
-    @Column(name = "nombre")
     private String nombre;
 
-    @NotNull
-    @Column(name = "telefono")
     private String telefono;
 
-    @NotNull
-    @Column(name = "direccion")
     private String direccion;
 
 
     public Proveedor() {
     }
 
-    public Proveedor(Integer idProveedor, String nombre, String telefono, String direccion){
-        this.idProveedor = idProveedor;
+    public Proveedor(Integer id_proveedor, String nombre, String telefono, String direccion){
+        this.id_proveedor = id_proveedor;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
     }
 
-    public Proveedor(Integer idProveedor) {
-        this.idProveedor = idProveedor;
+    public Proveedor(Integer id_proveedor) {
+        this.id_proveedor = id_proveedor;
     }
 
-    public Proveedor(Integer idProveedor, String nombre) {
-        this.idProveedor = idProveedor;
+    public Proveedor(Integer id_proveedor, String nombre) {
+        this.id_proveedor = id_proveedor;
         this.nombre = nombre;
     }
 
     public Integer getIdProveedor() {
-        return idProveedor;
+        return id_proveedor;
     }
 
-    public void setIdProveedor(Integer id) {
-        this.idProveedor = id;
+    public void setIdProveedor(Integer id_proveedor) {
+        this.id_proveedor = id_proveedor;
     }
 
     public String getNombre() {
@@ -99,4 +81,3 @@ public class Proveedor implements Serializable {
 
 
 }
-*/

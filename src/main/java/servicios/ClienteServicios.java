@@ -37,11 +37,6 @@ public class ClienteServicios {
         }
     }
 
-
-
-/*    @PersistenceContext(unitName = "persistenciaApp")
-    private EntityManager entityManager;*/
-
     public  List<Cliente> getClientes() throws IOException{
 
         List<Cliente> listaC = null;
@@ -49,9 +44,6 @@ public class ClienteServicios {
         try {
             sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
             listaC = sqlSession.selectList("getClientes");
-           // ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
-           // listaC= clienteMapper.getCliente();
-
         } finally {
             sqlSession.close();
         }
@@ -80,12 +72,6 @@ public class ClienteServicios {
         return "Cliente eliminado exitosamente";
     }
 
-/*
-    public  Cliente buscarCliente(Integer clienteId){
-        Cliente client = entityManager.find(Cliente.class, clienteId);
-        return client;
-    }
-*/
     public void modificarCliente(Cliente cliente) throws IOException{
         SqlSession sqlSession = null;
         try {

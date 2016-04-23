@@ -6,7 +6,7 @@
 
     <environments default="development">
         <environment id="development">
-            <transactionManager type="JDBC"/>
+            <transactionManager type="MANAGED"/>
             <dataSource type="JNDI">
                 <property name="data_source" value="java:/postgres"/>
             </dataSource>
@@ -14,5 +14,6 @@
     </environments>
     <mappers>
         <mapper resource="mapper/ClienteMapper.xml" />
+        <mapper resource="mapper/ProveedorMapper.xml" />
     </mappers>
 </configuration>

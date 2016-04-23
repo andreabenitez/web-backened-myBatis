@@ -26,8 +26,6 @@ public class ClienteRest {
     @Inject
     private ClienteServicios clienteServicios;
 
-/*
-    */
 /**
      * Lista todos los clientes
      * @return List<Cliente>
@@ -74,9 +72,8 @@ public class ClienteRest {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response modificarCliente(Cliente clienteModificado) throws IOException {
+    public void modificarCliente(Cliente clienteModificado) throws IOException {
         clienteServicios.modificarCliente(clienteModificado);
-        return Response.status(200).build();
     }
 
 /**
@@ -87,11 +84,8 @@ public class ClienteRest {
 
     @DELETE
     @Path("{id}")
-    public Response eliminarCliente(@PathParam("id") int id) throws IOException{
-        clienteServicios.eliminarCliente(id);
-        return Response.status(200).build();
+    public String eliminarCliente(@PathParam("id") int id) throws IOException{
+        return clienteServicios.eliminarCliente(id);
     }
-
-
 
 }

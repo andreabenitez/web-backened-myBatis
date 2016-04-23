@@ -1,6 +1,7 @@
 package mapper;
 
 import modelos.Cliente;
+import modelos.Proveedor;
 
 import java.util.List;
 
@@ -9,7 +10,8 @@ import java.util.List;
  */
 public interface ClienteMapper {
     public Cliente selectClienteById(int id);
-    public List<Cliente> getCliente();
+    public List<Cliente> getClientes();
     public void modificarCliente(Cliente cliente);
     public void agregarCliente(Cliente cliente);
+    public String eliminarCliente(int id_cliente);
 }
