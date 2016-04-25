@@ -5,7 +5,7 @@
 <mapper namespace="mapper.ClienteMapper">
 
 <!--    sentencias sq para cliente-->
-    <select id="selectClienteById" parameterType="int" resultType="modelos.Cliente">
+    <select id="getCliente" parameterType="int" resultType="modelos.Cliente">
         select * from cliente where id_cliente = #{id}
     </select>
 
@@ -28,7 +28,7 @@
     </update>
 
     <delete id="eliminarCliente" parameterType="int">
-        delete from cliente where id_cliente = #{id_cliente};
+      delete from cliente where id_cliente = #{id_cliente};
     </delete>
 
 </mapper>

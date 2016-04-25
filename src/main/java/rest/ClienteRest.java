@@ -1,21 +1,14 @@
 package rest;
 
 import modelos.Cliente;
-import servicios.ClienteServicios;
+import servicios.ClienteServicioMapperImpl;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.List;
+
 
 /**
  * Created by andrea on 27/02/16.
@@ -24,32 +17,7 @@ import java.util.List;
 public class ClienteRest {
 
     @Inject
-    private ClienteServicios clienteServicios;
-
-/**
-     * Lista todos los clientes
-     * @return List<Cliente>
-     */
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Cliente> listarClientes() throws IOException{
-         return clienteServicios.getClientes();
-    }
-
-
-/**
-     * Crea un cliente
-     * @param cliente
-     * @return
-     */
-
-    @POST
-    @Consumes("application/json")
-    public void crearCliente(Cliente cliente) throws IOException{
-        clienteServicios.agregarCliente(cliente);
-    }
-
+    private ClienteServicioMapperImpl clienteServicioMapper;
 
     /**
      * Retorna un cliente de acuerdo al id recibido como parametro
@@ -59,9 +27,36 @@ public class ClienteRest {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Cliente buscarCliente(@PathParam("id") Integer id) throws IOException{
-        return clienteServicios.selectClienteById(id);
+    public Cliente buscarCliente(@PathParam("id") Integer id) throws Exception{
+        return clienteServicioMapper.getCliente(id);
     }
+
+    /**
+     * Lista todos los clientes
+     * @return List<Cliente>
+     */
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Cliente> listarClientes() throws IOException {
+         return clienteServicioMapper.getClientes();
+    }
+
+
+    /**
+     * Crea un cliente
+     * @param cliente
+     * @return
+     */
+
+    @POST
+    @Consumes("application/json")
+    public void crearCliente(Cliente cliente) throws IOException{
+        clienteServicioMapper.agregarCliente(cliente);
+    }
+
+
+
 
     /**
      * Modifica un cliente
@@ -73,10 +68,10 @@ public class ClienteRest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void modificarCliente(Cliente clienteModificado) throws IOException {
-        clienteServicios.modificarCliente(clienteModificado);
+        clienteServicioMapper.modificarCliente(clienteModificado);
     }
 
-/**
+    /**
      * Eliminar cliente
      * @param id
      * @return
@@ -84,8 +79,8 @@ public class ClienteRest {
 
     @DELETE
     @Path("{id}")
-    public String eliminarCliente(@PathParam("id") int id) throws IOException{
-        return clienteServicios.eliminarCliente(id);
+    public void eliminarCliente(@PathParam("id") int id) throws IOException{
+        clienteServicioMapper.eliminarCliente(id);
     }
 
 }

@@ -6,15 +6,11 @@
 package modelos;
 
 
-import java.io.Serializable;
-
 /**
  * Created by andrea on 27/02/16.
  */
 
-public class Cliente implements Serializable {
-
-    private static final long serialVersionUID = 7053141853120409654L;
+public class Cliente {
 
     private Integer id_cliente;
 

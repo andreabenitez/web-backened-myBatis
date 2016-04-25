@@ -38,7 +38,7 @@ public class VentaServicios {
     private ProductoServicios productoServicios;
 
     @Inject
-    private ClienteServicios clienteServicios;
+    private ClienteServiciosDaoImpl clienteServicios;
 
     public List<Venta> getVentas() {
         return entityManager.createNamedQuery("Venta.findAll").getResultList();

@@ -1,4 +1,4 @@
-package rest;
+/*package rest;
 
 import excepciones.NoExisteProveedorException;
 import modelos.Proveedor;
@@ -11,32 +11,32 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.List;
 
-/**
+*//**
  * Created by andrea on 29/02/16.
- */
+ *//*
 @Path("/proveedores")
 public class ProveedorRest {
 
     @Inject
     private ProveedorServicios proveedorServicios;
 
-    /**
+    *//**
      *
      * @return
-     */
+     *//*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Proveedor> listarProveedores() throws IOException {
         return proveedorServicios.getProveedores();
     }
-/*
+*//*
 
-    */
-/**
+    *//*
+*//**
      *
      * @param proveedor
      * @return
-     */
+     *//*
 
     @POST
     @Consumes("application/json")
@@ -46,11 +46,11 @@ public class ProveedorRest {
     }
 
 
-/**
+*//**
      *
      * @param id
      * @return
-     */
+     *//*
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -59,11 +59,11 @@ public class ProveedorRest {
        return proveedorServicios.buscarProveedor(id);
     }
 
-/**
+*//**
      *
      * @param proveedorModificado
      * @return
-     */
+     *//*
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
@@ -74,11 +74,11 @@ public class ProveedorRest {
     }
 
 
-/**
+*//**
      *
      * @param id
      * @return
-     */
+     *//*
 
     @DELETE
     @Path("{id}")
@@ -88,4 +88,4 @@ public class ProveedorRest {
     }
 
 
-}
+}*/

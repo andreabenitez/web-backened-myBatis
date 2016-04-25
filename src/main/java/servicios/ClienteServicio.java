@@ -1,18 +1,19 @@
-package mapper;
+package servicios;
 
 import modelos.Cliente;
 
+import javax.ejb.Stateless;
 import java.util.List;
 
 /**
- * Created by sonia on 16/04/16.
+ * Created by andrea on 24/04/16.
  */
-
-public interface ClienteMapper {
-
-    Cliente getCliente(Integer id);
+@Stateless
+public interface ClienteServicio {
 
     List<Cliente> getClientes();
+
+    Cliente getCliente(Integer id);
 
     int agregarCliente(Cliente cliente);
 

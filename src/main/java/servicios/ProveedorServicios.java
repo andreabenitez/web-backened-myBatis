@@ -1,28 +1,18 @@
-package servicios;
+/*package servicios;
 
 
 import config.SqlSessionFactoryProvider;
-import excepciones.NoExisteProveedorException;
-import mapper.ClienteMapper;
-import mapper.ProveedorMapper;
-import modelos.Cliente;
-import modelos.Producto;
 import modelos.Proveedor;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.persistence.Query;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.io.IOException;
-import java.util.List;
+import java.util.List;*/
 
 /**
  * Created by andrea on 29/02/16.
  */
-@Stateless
+/*@Stateless
 public class ProveedorServicios {
 
     public List<Proveedor> getProveedores() throws IOException{
@@ -95,4 +85,4 @@ public class ProveedorServicios {
         return proveedor;
     }
 
-}
+}*/
