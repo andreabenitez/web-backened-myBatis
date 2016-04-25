@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PagoMapper">
+    <select id="getPagos" resultType="modelos.Pago">
+        select * from pago;
+    </select>
+
+    <select id="buscarVentaPorId" parameterType="int" resultType="modelos.Venta">
+        select * from venta where id_venta = #{ventaId};
+    </select>
+    <!--
+        <update id="modificarVenta" >
+            update venta set
+            date = #{date},
+            total = #{total},
+            id_cliente = #{id_cliente.getCliente()},
+            saldo_deuda = #{saldo_deuda}
+            where id_venta = #{id_venta}
+        </update>
+-->
+    <insert id="agregarPago" parameterType="modelos.Pago" useGeneratedKeys="true" keyProperty="id_pago">
+        insert into pago (id_venta, monto_pagado, fecha)
+        values (#{id_venta}, #{monto_pagado}, #{fecha});
+    </insert>
+
+</mapper>

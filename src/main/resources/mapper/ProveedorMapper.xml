@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ProveedorMapper">
+
+    <!--sentencis sql para proveedor-->
+    <select id="getProveedores" resultType="modelos.Proveedor">
+        select * from proveedor
+    </select>
+
+    <insert id="agregarProveedor" parameterType="modelos.Proveedor" useGeneratedKeys="true" keyProperty="id_proveedor">
+        insert into proveedor (nombre, telefono, direccion)
+        values (#{nombre}, #{telefono}, #{direccion});
+    </insert>
+
+    <update id="modificarProveedor" parameterType="modelos.Proveedor">
+        update proveedor set
+        nombre = #{nombre},
+        telefono = #{telefono},
+        direccion = #{direccion}
+        where id_proveedor = #{idProveedor}
+    </update>
+
+    <select id="buscarProveedor" parameterType="int" resultType="modelos.Proveedor">
+        select * from proveedor where id_proveedor = #{proveedorId}
+    </select>
+
+    <delete id="eliminarProveedor" parameterType="int">
+        delete from proveedor where id_proveedor = #{proveedorId};
+    </delete>
+
+</mapper>

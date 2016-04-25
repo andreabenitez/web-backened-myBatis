@@ -1,4 +1,4 @@
-/*
+
 package modelos;
 
 import javax.persistence.*;
@@ -7,54 +7,36 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.List;
 
-*/
 /**
  * Created by andrea on 29/02/16.
- *//*
+ */
 
 
-@Entity
-@Table(name = "venta")
-@XmlRootElement
-@NamedQueries({
-        @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v"),
-        @NamedQuery(name = "Venta.findById", query = "SELECT v FROM Venta v WHERE v.idVenta = :id")
-})
+
 public class Venta implements Serializable {
 
     private static final long serialVersionUID = 5956326146728513395L;
 
-    @Id
-    @Column(name = "id_venta")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVenta;
 
-    @NotNull
-    @Column(name = "date")
+    private Integer id_venta;
+
     private String date;
 
-    @NotNull
-    @Column(name = "total")
+
     private Float total;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
-    private Cliente cliente;
+    private Cliente id_cliente;
 
-    @OneToMany(mappedBy = "venta", fetch = FetchType.EAGER)
-    List<VentaDetalle> ventaDetalles;
+     List<VentaDetalle> ventaDetalles;
 
-    @NotNull
-    @Column(name = "saldo_deuda")
-    private Float saldoDeuda;
+   private Float saldo_deuda;
 
     public Integer getIdVenta() {
-        return idVenta;
+        return id_venta;
     }
 
     public void setIdVenta(Integer idVenta) {
-        this.idVenta = idVenta;
+        this.id_venta = idVenta;
     }
 
     public String getDate() {
@@ -74,11 +56,11 @@ public class Venta implements Serializable {
     }
 
     public Cliente getCliente() {
-        return cliente;
+        return id_cliente;
     }
 
     public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+        this.id_cliente = cliente;
     }
 
     public List<VentaDetalle> getVentaDetalles() {
@@ -90,13 +72,13 @@ public class Venta implements Serializable {
     }
 
     public Float getSaldoDeuda() {
-        return saldoDeuda;
+        return saldo_deuda;
     }
 
     public void setSaldoDeuda(Float saldoDeuda) {
-        this.saldoDeuda = saldoDeuda;
+        this.saldo_deuda = saldoDeuda;
     }
 
 
 }
-*/
+

@@ -1,4 +1,5 @@
 /*
+
 package servicios;
 
 import excepciones.NoExisteProductoException;
@@ -6,7 +7,7 @@ import excepciones.NoExisteProveedorException;
 import modelos.Cliente;
 import excepciones.TamanoPaginaExcepcion;
 import modelos.Producto;
-import modelos.ProductoDuplicado;
+//import modelos.ProductoDuplicado;
 import modelos.Proveedor;
 import org.hibernate.exception.ConstraintViolationException;
 import paginacion.Paginacion;
@@ -26,6 +27,7 @@ import java.util.List;
  * Created by andrea on 29/02/16.
  *//*
 
+
 @Stateless
 @LocalBean
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -40,8 +42,8 @@ public class ProductoServicios {
     @EJB
     private ProductoServicios productoServicios;
 
-    @Inject
-    private ProductoDuplicadoServicios productoDuplicadoServicios;
+//    @Inject
+  //  private ProductoDuplicadoServicios productoDuplicadoServicios;
 
     public  List<Producto> getProductos(Paginacion paginacion) throws TamanoPaginaExcepcion {
         if (paginacion.getTamanoPagina() > 100){
@@ -73,7 +75,7 @@ public class ProductoServicios {
             }
             else if (e.getCause() instanceof ConstraintViolationException) {
                 Producto p = productoServicios.buscarProductoPorNombre(producto);
-                productoDuplicadoServicios.agregarProductoDuplicado(p);
+                //productoDuplicadoServicios.agregarProductoDuplicado(p);
                 errorMessage += e.getCause().getMessage();
             }
             return Response.status(500).entity(errorMessage).build();
@@ -112,11 +114,12 @@ public class ProductoServicios {
         }
     }
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public Producto modificarProducto(Producto producto) throws NoExisteProveedorException {
-        Proveedor proveedor = proveedorServicios.buscarProveedor(producto.getProveedor().getIdProveedor());
-        producto.setProveedor(proveedor);
-        return entityManager.merge(producto);
-    }
+    //@TransactionAttribute(TransactionAttributeType.REQUIRED)
+    //public Producto modificarProducto(Producto producto) throws NoExisteProveedorException {
+      //  Proveedor proveedor = proveedorServicios.buscarProveedor(producto.getProveedor().getIdProveedor());
+      //  producto.setProveedor(proveedor);
+       // return entityManager.merge(producto);
+    //}
 }
+
 */

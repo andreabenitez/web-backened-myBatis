@@ -1,4 +1,4 @@
-/*
+
 package servicios;
 
 import excepciones.NoExisteProductoException;
@@ -19,19 +19,21 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-*/
+
 /**
  * Created by andrea on 29/02/16.
- *//*
+ */
 
+/*
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class VentaServicios {
+*/
 
-    @Resource
+   /* @Resource
     private SessionContext context;
-
-    @PersistenceContext(unitName = "persistenciaApp")
+*/
+/*    @PersistenceContext(unitName = "persistenciaApp")
     private EntityManager entityManager;
 
     @Inject
@@ -42,8 +44,9 @@ public class VentaServicios {
 
     public List<Venta> getVentas() {
         return entityManager.createNamedQuery("Venta.findAll").getResultList();
-    }
+    }*/
 
+/*
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Response agregarVenta(Venta venta) {
         try {
@@ -89,8 +92,9 @@ public class VentaServicios {
             return Response.status(500).entity(errorMessage).build();
         }
     }
+*/
 
-    public Venta modificarVenta(Venta venta) {
+ /*   public Venta modificarVenta(Venta venta) {
         return entityManager.merge(venta);
     }
 
@@ -115,6 +119,6 @@ public class VentaServicios {
         }else{
             throw new ValidarExistenciaDetalle("La venta no posee detalles. Intente de vuelta");
         }
-    }
-}
-*/
+    }*/
+//}
+

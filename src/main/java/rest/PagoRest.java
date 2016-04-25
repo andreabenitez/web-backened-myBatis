@@ -1,9 +1,10 @@
-/*
+
 package rest;
 
 import modelos.Pago;
 import servicios.PagoServicios;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,17 +26,16 @@ public class PagoRest {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Pago> listarPagos() {
+    public List<Pago> listarPagos() throws IOException{
         return pagoServicios.getPagos();
     }
 
-
     @POST
     @Consumes("application/json")
-    public Response crearPago(Pago pago)
+    public String crearPago(Pago pago) throws IOException
     {
         return pagoServicios.agregarPago(pago);
     }
 
 }
-*/
+
