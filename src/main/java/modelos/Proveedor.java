@@ -5,19 +5,11 @@
  */
 package modelos;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
-
-
 /**
  * Created by andrea on 27/02/16.
  */
 
-public class Proveedor implements Serializable {
-
-    private static final long serialVersionUID = 7032183068501280419L;
+public class Proveedor  {
 
     private Integer id_proveedor;
 
