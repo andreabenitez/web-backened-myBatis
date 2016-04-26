@@ -6,9 +6,6 @@
 package modelos;
 
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -19,11 +16,11 @@ public class Producto implements Serializable {
 
     private static final long serialVersionUID = 5165621093422381650L;
 
-    private Integer id_producto;
+    private Compra id_producto;
     //nombre debe ser unico
     private String nombre;
 
-    private Integer cantidad;
+    private Compra cantidad;
 
     private Float precioUnitario;
 
@@ -34,11 +31,11 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(Integer idProducto) {
+    public Producto(Compra idProducto) {
         this.id_producto = idProducto;
     }
 
-    public Producto(Integer idProducto, String nombre, Integer cantidad, Float precioUnitario, String descripcion, Proveedor proveedor) {
+    public Producto(Compra idProducto, String nombre, Compra cantidad, Float precioUnitario, String descripcion, Proveedor proveedor) {
         this.id_producto = idProducto;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -47,17 +44,17 @@ public class Producto implements Serializable {
         this.proveedor = proveedor;
     }
 
-    public Producto(Integer idProducto, String nombre, Float precioUnitario) {
+    public Producto(Compra idProducto, String nombre, Float precioUnitario) {
         this.id_producto = idProducto;
         this.nombre = nombre;
         this.precioUnitario = precioUnitario;
     }
 
-    public Integer getIdProducto() {
+    public Compra getIdProducto() {
         return id_producto;
     }
 
-    public void setIdProducto(Integer id) {
+    public void setIdProducto(Compra id) {
         this.id_producto = id;
     }
 
@@ -69,11 +66,11 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
-    public Integer getCantidad() {
+    public Compra getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(Compra cantidad) {
         this.cantidad = cantidad;
     }
 

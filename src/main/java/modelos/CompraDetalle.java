@@ -1,74 +1,50 @@
-/*
 package modelos;
 
-import servicios.ProductoServicios;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
-
-*/
 /**
  * Created by andrea on 29/02/16.
- *//*
+ */
 
-@Entity
-@Table(name = "compradetalle")
-@XmlRootElement
-@NamedQueries({
+
+/*@NamedQueries({
         @NamedQuery(name = "CompraDetalle.findAll", query = "SELECT cd FROM CompraDetalle cd"),
         @NamedQuery(name = "CompraDetalle.findById", query = "SELECT cd FROM CompraDetalle cd WHERE cd.idCompraDetalle = :id")
-})
-public class CompraDetalle implements Serializable {
+})*/
+public class CompraDetalle {
 
-    private static final long serialVersionUID = -6010385959003266635L;
-
-    @Id
-    @Column(name = "id_compra_detalle")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCompraDetalle;
-
-    @ManyToOne
-    @JoinColumn(name = "id_producto", referencedColumnName = "id_producto")
-    private Producto producto;
-
-    @NotNull
-    @Column(name = "cantidad")
+    private Integer id_integer_detalle;
+    private Integer id_producto;
     private Integer cantidad;
+    private Integer id_compra;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_compra", referencedColumnName = "id_compra")
-    private Compra compra;
-
-    public Integer getIdCompraDetalle() {
-        return idCompraDetalle;
+    public java.lang.Integer getId_integer_detalle() {
+        return id_integer_detalle;
     }
 
-    public void setIdCompraDetalle(Integer id) {
-        this.idCompraDetalle = id;
+    public void setId_integer_detalle(java.lang.Integer id_integer_detalle) {
+        this.id_integer_detalle = id_integer_detalle;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Integer getId_producto() {
+        return id_producto;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setId_producto(Integer id_producto) {
+        this.id_producto = id_producto;
     }
 
-    public void setCompra(Compra compra) {
-        this.compra = compra;
-    }
-
-    public Integer getCantidad() {
+    public java.lang.Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(java.lang.Integer cantidad) {
         this.cantidad = cantidad;
     }
 
+    public Integer getId_compra() {
+        return id_compra;
+    }
+
+    public void setId_compra(Integer id_compra) {
+        this.id_compra = id_compra;
+    }
 }
-*/

@@ -18,4 +18,6 @@ public interface ProveedorMapper {
     int modificarProveedor(Proveedor proveedor);
 
     int eliminarProveedor(Integer id);
+
+    int countProveedor(Integer id);
 }

@@ -91,7 +91,7 @@ public class ProductoServicios {
         return pro.get(0);
     }
 
-    public String eliminarProducto(Integer productoId){
+    public String eliminarProducto(Compra productoId){
         Producto producto = entityManager.find(Producto.class, productoId);
         if (null != producto) {
             entityManager.remove(producto);
@@ -102,7 +102,7 @@ public class ProductoServicios {
 
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public Producto buscarProducto(Integer productoId) throws NoExisteProductoException {
+    public Producto buscarProducto(Compra productoId) throws NoExisteProductoException {
         Producto producto = entityManager.find(Producto.class, productoId);
         if (producto == null){
             throw new NoExisteProductoException("El producto con el id: " + productoId + " no existe");

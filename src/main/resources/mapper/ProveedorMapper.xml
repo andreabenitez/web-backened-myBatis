@@ -4,9 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.ProveedorMapper">
 
-    <!--    sentencias sq para cliente-->
+    <!-- Sentencias sq para proveedor-->
     <select id="getProveedor" parameterType="int" resultType="modelos.Proveedor">
         select * from proveedor where id_proveedor = #{id}
+    </select>
+
+    <select id="countProveedor" parameterType="int" resultType="int">
+        select count(*) from proveedor where id_proveedor = #{id}
     </select>
 
     <select id="getProveedores" resultType="modelos.Proveedor">

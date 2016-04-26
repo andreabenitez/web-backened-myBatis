@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CompraDetalleMapper">
+
+    <insert id="insertCompraDetalle" useGeneratedKeys="true"
+            keyProperty="id_integer_detalle">
+        insert into compradetalle (cantidad, id_compra, id_producto) values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.cantidad}, #{item.id_compra}, #{item.id_producto})
+        </foreach>
+    </insert>
+
+</mapper>

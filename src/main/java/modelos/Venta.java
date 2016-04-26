@@ -27,7 +27,7 @@ public class Venta implements Serializable {
     @Id
     @Column(name = "id_venta")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVenta;
+    private Compra idVenta;
 
     @NotNull
     @Column(name = "date")
@@ -49,11 +49,11 @@ public class Venta implements Serializable {
     @Column(name = "saldo_deuda")
     private Float saldoDeuda;
 
-    public Integer getIdVenta() {
+    public Compra getIdVenta() {
         return idVenta;
     }
 
-    public void setIdVenta(Integer idVenta) {
+    public void setIdVenta(Compra idVenta) {
         this.idVenta = idVenta;
     }
 

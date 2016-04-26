@@ -95,7 +95,7 @@ public class VentaServicios {
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public Venta buscarVentaPorId(Integer idVenta) {
+    public Venta buscarVentaPorId(Compra idVenta) {
         return entityManager.find(Venta.class, idVenta);
     }
 

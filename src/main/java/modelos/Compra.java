@@ -1,55 +1,33 @@
-/*
 package modelos;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
 import java.util.List;
 
-*/
 /**
  * Created by andrea on 29/02/16.
- *//*
+ */
 
-@Entity
-@Table(name = "compra")
-@XmlRootElement
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c"),
         @NamedQuery(name = "Compra.findById", query = "SELECT c FROM Compra c WHERE c.idCompra = :id")
-})
-public class Compra implements Serializable {
+})*/
+public class Compra {
 
-    private static final long serialVersionUID = 9155438880170889159L;
+    private Integer id_compra;
 
-    @Id
-    @Column(name = "id_compra")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCompra;
-
-    @NotNull
-    @Column(name = "date")
     private String date;
 
-    @NotNull
-    @Column(name = "total")
     private Float total;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor")
-    private Proveedor proveedor;
+    private Integer id_proveedor;
 
-    @OneToMany(mappedBy = "compra", fetch = FetchType.EAGER)
     private List<CompraDetalle> compraDetalles;
 
-    public Integer getIdCompra() {
-        return idCompra;
+    public Integer getId_compra() {
+        return id_compra;
     }
 
-    public void setIdCompra(Integer id) {
-        this.idCompra = id;
+    public void setId_compra(Integer id_compra) {
+        this.id_compra = id_compra;
     }
 
     public String getDate() {
@@ -68,12 +46,12 @@ public class Compra implements Serializable {
         this.total = total;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
+    public Integer getId_proveedor() {
+        return id_proveedor;
     }
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
+    public void setId_proveedor(Integer id_proveedor) {
+        this.id_proveedor = id_proveedor;
     }
 
     public List<CompraDetalle> getCompraDetalles() {
@@ -83,6 +61,4 @@ public class Compra implements Serializable {
     public void setCompraDetalles(List<CompraDetalle> compraDetalles) {
         this.compraDetalles = compraDetalles;
     }
-
 }
-*/

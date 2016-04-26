@@ -15,5 +15,6 @@
     <mappers>
         <mapper resource="mapper/ClienteMapper.xml" />
         <mapper resource="mapper/ProveedorMapper.xml" />
+        <mapper resource="mapper/CompraMapper.xml" />
     </mappers>
 </configuration>

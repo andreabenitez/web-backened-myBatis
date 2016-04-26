@@ -66,7 +66,7 @@ public class ProductoRest {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Producto buscarProducto(@PathParam("id") Integer id) throws NoExisteProductoException {
+    public Producto buscarProducto(@PathParam("id") Compra id) throws NoExisteProductoException {
         return productoServicios.buscarProducto(id);
     }
 
@@ -81,7 +81,7 @@ public class ProductoRest {
 
     @DELETE
     @Path("{id}")
-    public Response eliminarProducto(@PathParam("id") Integer id) {
+    public Response eliminarProducto(@PathParam("id") Compra id) {
         productoServicios.eliminarProducto(id);
         return Response.status(200).build();
     }
