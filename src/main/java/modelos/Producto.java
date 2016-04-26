@@ -25,7 +25,7 @@ public class Producto implements Serializable {
 
     private Integer cantidad;
 
-    private Float precioUnitario;
+    private Float precio_unitario;
 
     private String descripcion;
 
@@ -42,7 +42,7 @@ public class Producto implements Serializable {
         this.id_producto = idProducto;
         this.nombre = nombre;
         this.cantidad = cantidad;
-        this.precioUnitario = precioUnitario;
+        this.precio_unitario = precioUnitario;
         this.descripcion = descripcion;
         this.proveedor = proveedor;
     }
@@ -50,7 +50,7 @@ public class Producto implements Serializable {
     public Producto(Integer idProducto, String nombre, Float precioUnitario) {
         this.id_producto = idProducto;
         this.nombre = nombre;
-        this.precioUnitario = precioUnitario;
+        this.precio_unitario = precioUnitario;
     }
 
     public Integer getIdProducto() {
@@ -78,11 +78,11 @@ public class Producto implements Serializable {
     }
 
     public Float getPrecioUnitario() {
-        return precioUnitario;
+        return precio_unitario;
     }
 
     public void setPrecioUnitario(Float precioUnitario) {
-        this.precioUnitario = precioUnitario;
+        this.precio_unitario = precioUnitario;
     }
 
     public String getDescripcion() {

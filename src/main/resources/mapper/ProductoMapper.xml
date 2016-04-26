@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ProductoMapper">
+
+    <!--    sentencias sql para producto-->
+    <resultMap id="proveedorResult" type="modelos.Proveedor" >
+        <id column="id_proveedor" property="idProveedor" javaType="int" />
+        <result column="nombre" property="nombre" javaType="String" />
+        <result column="telefono" property="telefono" javaType="String" />
+        <result column="direccion" property="direccion" javaType="String" />
+    </resultMap>
+    
+    <resultMap id="productoResult" type="modelos.Producto">
+        <id column="id_producto" property="id_producto" javaType="Integer" />
+        <result column="nombre" property="nombre" javaType="String" />
+        <result column="cantidad" property="cantidad" javaType="int" />
+        <result column="precio_unitario" property="precioUnitario" javaType="Float" />
+        <result column="descripcion" property="descripcion" javaType="String" />
+        <association property="proveedor" column="id_proveedor" resultMap="proveedorResult" />
+    </resultMap>
+
+
+
+    <select id="buscarProducto" parameterType="int" resultMap="productoResult">
+
+         select id_producto as id_producto, producto.nombre as nombre, cantidad as cantidad, precio_unitario as precio_unitario, descripcion as descripcion, proveedor.id_proveedor, proveedor.nombre, proveedor.telefono, proveedor.direccion from producto inner join proveedor on proveedor.id_proveedor = proveedor.id_proveedor
+         where producto.id_producto = #{idProducto};
+
+
+
+    </select>
+
+
+    <select id="getProductos" resultType="modelos.Producto">
+        select * from producto
+    </select>
+
+    <select id="buscarProductoPorNombre" parameterType="String" resultType="modelos.Producto">
+        select * from producto where nombre = #{nombre}
+    </select>
+
+
+    <insert id="agregarProducto" parameterType="modelos.Producto" useGeneratedKeys="true" keyProperty="id_producto">
+        insert into producto (nombre, cantidad, descripcion, precio_unitario, id_proveedor)
+        values (#{nombre}, #{cantidad}, #{descripcion}, #{precioUnitario}, #{proveedor.idProveedor});
+    </insert>
+
+    <update id="modificarProducto" parameterType="modelos.Producto">
+                update producto set
+                nombre = #{nombre},
+                cantidad = #{cantidad},
+                descripcion = #{descripcion},
+                precio_unitario = #{precioUnitario},
+                id_proveedor = #{proveedor.idProveedor}
+                where id_producto = #{idProducto}
+    </update>
+
+    <delete id="eliminarProducto" parameterType="int">
+        delete from producto where id_producto = #{productoId};
+    </delete>
+
+</mapper>
