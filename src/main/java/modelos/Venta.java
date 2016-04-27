@@ -1,60 +1,28 @@
-/*
 package modelos;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
 import java.util.List;
 
-*/
 /**
  * Created by andrea on 29/02/16.
- *//*
+ */
 
 
-@Entity
-@Table(name = "venta")
-@XmlRootElement
-@NamedQueries({
-        @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v"),
-        @NamedQuery(name = "Venta.findById", query = "SELECT v FROM Venta v WHERE v.idVenta = :id")
-})
-public class Venta implements Serializable {
+public class Venta {
 
-    private static final long serialVersionUID = 5956326146728513395L;
-
-    @Id
-    @Column(name = "id_venta")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Compra idVenta;
-
-    @NotNull
-    @Column(name = "date")
+    private Integer id_venta;
     private String date;
-
-    @NotNull
-    @Column(name = "total")
     private Float total;
+    private Integer id_cliente;
+    private Float saldo_deuda;
+    private List<VentaDetalle> ventaDetalles;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
-    private Cliente cliente;
 
-    @OneToMany(mappedBy = "venta", fetch = FetchType.EAGER)
-    List<VentaDetalle> ventaDetalles;
-
-    @NotNull
-    @Column(name = "saldo_deuda")
-    private Float saldoDeuda;
-
-    public Compra getIdVenta() {
-        return idVenta;
+    public Integer getId_venta() {
+        return id_venta;
     }
 
-    public void setIdVenta(Compra idVenta) {
-        this.idVenta = idVenta;
+    public void setId_venta(Integer id_venta) {
+        this.id_venta = id_venta;
     }
 
     public String getDate() {
@@ -73,12 +41,20 @@ public class Venta implements Serializable {
         this.total = total;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Integer getId_cliente() {
+        return id_cliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setId_cliente(Integer id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public Float getSaldo_deuda() {
+        return saldo_deuda;
+    }
+
+    public void setSaldo_deuda(Float saldo_deuda) {
+        this.saldo_deuda = saldo_deuda;
     }
 
     public List<VentaDetalle> getVentaDetalles() {
@@ -89,14 +65,4 @@ public class Venta implements Serializable {
         this.ventaDetalles = ventaDetalles;
     }
 
-    public Float getSaldoDeuda() {
-        return saldoDeuda;
-    }
-
-    public void setSaldoDeuda(Float saldoDeuda) {
-        this.saldoDeuda = saldoDeuda;
-    }
-
-
 }
-*/

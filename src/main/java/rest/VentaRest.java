@@ -1,36 +1,34 @@
-/*
 package rest;
 
+import excepciones.VentaException;
 import modelos.Venta;
-import servicios.VentaServicios;
+import servicios.VentaServicioMapperImpl;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
-*/
 /**
  * Created by andrea on 29/02/16.
- *//*
+ */
 
 @Path("/ventas")
 public class VentaRest {
 
     @Inject
-    private VentaServicios ventaServicios;
+    private VentaServicioMapperImpl ventaServicioMapper;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Venta> listarVentas() {
-        return ventaServicios.getVentas();
-    }
+
 
     @POST
     @Consumes("application/json")
-    public Response crearVenta(Venta venta) {
-        return ventaServicios.agregarVenta(venta);
+    public Object crearVenta(Venta venta) {
+        try {
+            return ventaServicioMapper.agregarVenta(venta);
+        }catch (VentaException e){
+            return Response.status(500).entity("Error al agregar la venta. " + e.getMessage()).build();
+        }
     }
 }
-*/

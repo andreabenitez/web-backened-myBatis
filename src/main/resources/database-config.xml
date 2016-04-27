@@ -18,5 +18,7 @@
         <mapper resource="mapper/CompraMapper.xml" />
         <mapper resource="mapper/ProductoMapper.xml" />
         <mapper resource="mapper/CompraDetalleMapper.xml" />
+        <mapper resource="mapper/VentaMapper.xml" />
+        <mapper resource="mapper/VentaDetalleMapper.xml" />
     </mappers>
 </configuration>

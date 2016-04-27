@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.VentaMapper">
+
+    <select id="getVenta" parameterType="int" resultType="modelos.Venta">
+        select * from venta where id_venta = #{id_venta}
+    </select>
+
+    <select id="countVentaById" parameterType="int" resultType="int">
+        select count(*) from venta where id_venta = #{id_venta}
+    </select>
+
+    <insert id="agregarVenta" parameterType="modelos.Venta" useGeneratedKeys="true" keyProperty="id_venta">
+        insert into venta(date, saldo_deuda, total, id_cliente)
+        values (#{date}, #{saldo_deuda}, #{total}, #{id_cliente});
+    </insert>
+
+    <update id="modificarVenta" parameterType="modelos.Venta">
+        update venta set
+        date = #{date},
+        saldo_deuda = #{saldo_deuda},
+        total = #{total},
+        id_cliente = #{id_cliente}
+        where id_venta = #{id_venta}
+    </update>
+
+</mapper>

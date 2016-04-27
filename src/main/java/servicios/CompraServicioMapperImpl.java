@@ -81,24 +81,23 @@ public class CompraServicioMapperImpl implements CompraServicio {
     public Validation validarCompra(Compra compra){
         String errorMessagge="";
         Boolean isError = false;
-       /* if (compra.getCompraDetalles().isEmpty()) {
+
+        if (compra.getCompraDetalles().isEmpty()) {
             errorMessagge += "No hay ningun detalle en la compra. ";
             isError = true;
-        }*/
+        }
+
         if(!(proveedorMapper.countProveedor(compra.getId_proveedor()) > 0)){
             errorMessagge += "No hay ningun proveedor con id: "+ compra.getId_proveedor();
             isError = true;
         }
-        return new Validation(isError, errorMessagge);
 
-
-        /* TODO: continuar cuando haya mapper de producto
         for (CompraDetalle compraDetalle : compra.getCompraDetalles()) {
-            Producto producto = productoServicios.buscarProducto(compraDetalle.getProducto().getIdProducto());
-            if (!(producto.getProveedor().getIdProveedor().equals(proveedor.getIdProveedor()))) {
-                return 2;
-                //return Response.status(500).entity("El producto" + producto.toString() + "no pertenece al proveedor seleccionado: " + compra.getProveedor().toString() + "\nNo se pudo realizar la compra").build() ;
+            Producto producto = productoMapper.buscarProducto(compraDetalle.getId_producto());
+            if (!(producto.getProveedor().getIdProveedor().equals(compra.getId_proveedor()))) {
+                errorMessagge += "El producto" + producto.toString() + "no pertenece al proveedor seleccionado: " + compra.getId_proveedor() ;
             }
-        }*/
+        }
+        return new Validation(isError, errorMessagge);
     }
 }

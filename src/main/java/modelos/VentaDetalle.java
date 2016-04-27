@@ -1,76 +1,46 @@
-/*
 package modelos;
 
-import org.hibernate.annotations.Check;
-import servicios.ProductoServicios;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
-
-*/
 /**
  * Created by andrea on 29/02/16.
- *//*
+ */
 
-@Entity
-@Table(name = "ventadetalle")
-@XmlRootElement
-@NamedQueries({
-        @NamedQuery(name = "VentaDetalle.findAll", query = "SELECT vd FROM VentaDetalle vd"),
-        @NamedQuery(name = "VentaDetalle.findById", query = "SELECT vd FROM VentaDetalle vd WHERE vd.idVentaDetalle = :id")
-})
-@Check(constraints = "cantidad > 0")
-public class VentaDetalle implements Serializable{
 
-    private static final long serialVersionUID = -8767407091704984773L;
+public class VentaDetalle{
 
-    @Id
-    @Column(name = "id_venta_detalle")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Compra idVentaDetalle;
+    private Integer id_venta_detalle;
+    private Integer id_producto;
+    private Integer cantidad;
+    private Integer id_venta;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_producto", referencedColumnName = "id_producto")
-    private Producto producto;
-
-    @NotNull
-    @Column(name = "cantidad")
-    private Compra cantidad;
-
-    @ManyToOne
-    @JoinColumn(name = "id_venta", referencedColumnName = "id_venta")
-    private Venta venta;
-
-    public Compra getIdVentaDetalle() {
-        return idVentaDetalle;
+    public Integer getId_venta_detalle() {
+        return id_venta_detalle;
     }
 
-    public void setIdVentaDetalle(Compra idVentaDetalle) {
-        this.idVentaDetalle = idVentaDetalle;
+    public void setId_venta_detalle(Integer id_venta_detalle) {
+        this.id_venta_detalle = id_venta_detalle;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Integer getId_producto() {
+        return id_producto;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setId_producto(Integer id_producto) {
+        this.id_producto = id_producto;
     }
 
-    public Compra getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Compra cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
-    public void setVenta(Venta venta) {
-        this.venta = venta;
+    public Integer getId_venta() {
+        return id_venta;
     }
 
+    public void setId_venta(Integer id_venta) {
+        this.id_venta = id_venta;
+    }
 }
-*/

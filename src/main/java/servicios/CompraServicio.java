@@ -8,7 +8,6 @@ import modelos.Compra;
  */
 public interface CompraServicio {
 
-
-
     int agregarCompra(Compra compra) throws CompraException;
+
 }
