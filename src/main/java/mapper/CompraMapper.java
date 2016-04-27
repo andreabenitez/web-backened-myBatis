@@ -8,4 +8,6 @@ import modelos.Compra;
 public interface CompraMapper {
 
     int agregarCompra(Compra compra);
+
+    int modificarCompra(Compra compra);
 }

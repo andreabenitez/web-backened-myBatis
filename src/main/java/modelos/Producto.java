@@ -1,26 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package modelos;
 
 
 import java.io.Serializable;
 
-/**
+/*
  * Created by andrea on 27/02/16.
  */
+
 
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 5165621093422381650L;
 
-    private Compra id_producto;
+    private Integer id_producto;
     //nombre debe ser unico
     private String nombre;
 
-    private Compra cantidad;
+    private Integer cantidad;
 
     private Float precio_unitario;
 
@@ -31,11 +29,11 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(Compra idProducto) {
+    public Producto(Integer idProducto) {
         this.id_producto = idProducto;
     }
 
-    public Producto(Compra idProducto, String nombre, Compra cantidad, Float precioUnitario, String descripcion, Proveedor proveedor) {
+    public Producto(Integer idProducto, String nombre, Integer cantidad, Float precioUnitario, String descripcion, Proveedor proveedor) {
         this.id_producto = idProducto;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -44,17 +42,17 @@ public class Producto implements Serializable {
         this.proveedor = proveedor;
     }
 
-    public Producto(Compra idProducto, String nombre, Float precioUnitario) {
+    public Producto(Integer idProducto, String nombre, Float precioUnitario) {
         this.id_producto = idProducto;
         this.nombre = nombre;
         this.precio_unitario = precioUnitario;
     }
 
-    public Compra getIdProducto() {
+    public Integer getIdProducto() {
         return id_producto;
     }
 
-    public void setIdProducto(Compra id) {
+    public void setIdProducto(Integer id) {
         this.id_producto = id;
     }
 
@@ -66,11 +64,11 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
-    public Compra getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Compra cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 

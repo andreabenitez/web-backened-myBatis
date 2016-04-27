@@ -1,14 +1,13 @@
 package servicios;
 
 import modelos.Producto;
-import paginacion.Paginacion;
 
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-/**
+/*
  * Created by sonia on 25/04/16.
  */
+
 public interface ProductoSerivicio {
 
 

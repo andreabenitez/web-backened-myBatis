@@ -1,13 +1,11 @@
 package mapper;
 
-import modelos.CompraDetalle;
-
-import java.util.List;
+import modelos.Compra;
 
 /**
  * Created by andrea on 26/04/16.
  */
 public interface CompraDetalleMapper {
 
-    int insertCompraDetalle(List<CompraDetalle> compraDetalleList);
+    int insertCompraDetalles(Compra compra);
 }

@@ -5,23 +5,23 @@ import excepciones.NoExisteProductoException;
 import excepciones.NoExisteProveedorException;
 import excepciones.TamanoPaginaExcepcion;
 import modelos.Producto;
-//import modelos.ProductoDuplicado;
-//import servicios.ProductoDuplicadoServicios;
-import paginacion.Paginacion;
 import servicios.ProductoServicioMapperImpl;
-//import servicios.ProductoServicios;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
+//import modelos.ProductoDuplicado;
+//import servicios.ProductoDuplicadoServicios;
+//import servicios.ProductoServicios;
 
-/**
+
+/*
  * Created by andrea on 29/02/16.
  */
+
 
 @Path("/productos")
 public class ProductoRest {
@@ -36,28 +36,28 @@ public class ProductoRest {
     //@POST
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     //@Path("/paginado")
     public List<Producto> listarProductos() throws TamanoPaginaExcepcion{
         return productoServicioMapper.getProductos();
     }
-/*
-    @GET
+
+   /* @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/duplicados")
     public List<ProductoDuplicado> listarProductosDuplicados(){
         return productoDuplicadoServicios.getProductosDuplicados();
 
-    }
-*/
+    }*/
+
+
     @POST
     @Consumes("application/json")
     public void crearProducto(Producto producto) throws Exception {
         productoServicioMapper.agregarProducto(producto);
 
     }
-/*
-    @POST
+
+    /*@POST
     @Consumes("application/json")
     @Path("/insertalista")
     public Response insertarListaDeProductos(List<Producto> producto)throws Exception{
@@ -66,6 +66,7 @@ public class ProductoRest {
         return Response.status(200).build();
     }
 */
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

@@ -9,4 +9,12 @@
         values (#{date}, #{total}, #{id_proveedor});
     </insert>
 
+    <update id="modificarCompra" parameterType="modelos.Compra">
+        update compra set
+        date = #{date},
+        total = #{total},
+        id_proveedor = #{id_proveedor}
+        where id_compra = #{id_compra}
+    </update>
+
 </mapper>

@@ -11,7 +11,7 @@ package modelos;
 
 public class Proveedor  {
 
-    private Compra id_proveedor;
+    private Integer id_proveedor;
 
     private String nombre;
 
@@ -23,27 +23,27 @@ public class Proveedor  {
     public Proveedor() {
     }
 
-    public Proveedor(Compra id_proveedor, String nombre, String telefono, String direccion){
+    public Proveedor(Integer id_proveedor, String nombre, String telefono, String direccion){
         this.id_proveedor = id_proveedor;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
     }
 
-    public Proveedor(Compra id_proveedor) {
+    public Proveedor(Integer id_proveedor) {
         this.id_proveedor = id_proveedor;
     }
 
-    public Proveedor(Compra id_proveedor, String nombre) {
+    public Proveedor(Integer id_proveedor, String nombre) {
         this.id_proveedor = id_proveedor;
         this.nombre = nombre;
     }
 
-    public Compra getIdProveedor() {
+    public Integer getIdProveedor() {
         return id_proveedor;
     }
 
-    public void setIdProveedor(Compra id_proveedor) {
+    public void setIdProveedor(Integer id_proveedor) {
         this.id_proveedor = id_proveedor;
     }
 

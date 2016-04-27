@@ -12,7 +12,7 @@ package modelos;
 
 public class Cliente {
 
-    private Compra id_cliente;
+    private Integer id_cliente;
 
     private String nombre;
 
@@ -25,11 +25,11 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Compra getId_cliente() {
+    public Integer getId_cliente() {
         return id_cliente;
     }
 
-    public void setId_cliente(Compra id_cliente) {
+    public void setId_cliente(Integer id_cliente) {
         this.id_cliente = id_cliente;
     }
 

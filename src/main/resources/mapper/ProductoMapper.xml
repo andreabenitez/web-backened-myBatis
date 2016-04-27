@@ -21,19 +21,13 @@
         <association property="proveedor" column="id_proveedor" resultMap="proveedorResult" />
     </resultMap>
 
-
-
     <select id="buscarProducto" parameterType="int" resultMap="productoResult">
-
          select id_producto as id_producto, producto.nombre as nombre, cantidad as cantidad, precio_unitario as precio_unitario, descripcion as descripcion, proveedor.id_proveedor, proveedor.nombre, proveedor.telefono, proveedor.direccion from producto inner join proveedor on proveedor.id_proveedor = proveedor.id_proveedor
          where producto.id_producto = #{idProducto};
-
-
-
     </select>
 
 
-    <select id="getProductos" resultType="modelos.Producto">
+    <select id="getProductos" resultType="modelos.Producto" >
         select * from producto
     </select>
 

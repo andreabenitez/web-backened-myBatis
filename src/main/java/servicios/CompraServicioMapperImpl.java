@@ -3,9 +3,11 @@ package servicios;
 import excepciones.CompraException;
 import mapper.CompraDetalleMapper;
 import mapper.CompraMapper;
+import mapper.ProductoMapper;
 import mapper.ProveedorMapper;
 import modelos.Compra;
 import modelos.CompraDetalle;
+import modelos.Producto;
 import org.mybatis.cdi.Mapper;
 import utils.Validation;
 
@@ -23,6 +25,10 @@ public class CompraServicioMapperImpl implements CompraServicio {
     @Inject
     @Mapper
     ProveedorMapper proveedorMapper;
+
+    @Inject
+    @Mapper
+    ProductoMapper productoMapper;
 
     @Inject
     @Mapper
@@ -47,31 +53,24 @@ public class CompraServicioMapperImpl implements CompraServicio {
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public int crearCompra(Compra compra) throws  CompraException {
 
-
         String dateString = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         compra.setDate(dateString);
         Float total = new Float(0.0);
-
+        compra.setTotal(total);
         Validation validation = validarCompra(compra);
         if(!(validation.getIsError())) {
 
-
-
-            /*for (CompraDetalle compraDetalle : compra.getCompraDetalles()) {
-                compraDetalle.setCompra(compra);
-                Producto producto = productoServicios.buscarProducto(compraDetalle.getProducto().getIdProducto());
-                producto.setCantidad(producto.getCantidad() + compraDetalle.getCantidad());
-                entityManager.merge(producto);
-                total = total + ((producto.getPrecioUnitario() * compraDetalle.getCantidad()));
-                entityManager.persist(compraDetalle);
-            }*/
-
-            compra.setTotal(total);
             compraMapper.agregarCompra(compra);
             for (CompraDetalle compraDetalle : compra.getCompraDetalles()) {
                 compraDetalle.setId_compra(compra.getId_compra());
+                Producto producto = productoMapper.buscarProducto(compraDetalle.getId_producto());
+                producto.setCantidad(producto.getCantidad() + compraDetalle.getCantidad());
+                productoMapper.modificarProducto(producto);
+                total = total + ((producto.getPrecioUnitario() * compraDetalle.getCantidad()));
             }
-            return compraDetalleMapper.insertCompraDetalle(compra.getCompraDetalles());
+            compraDetalleMapper.insertCompraDetalles(compra);
+            compra.setTotal(total);
+            return compraMapper.modificarCompra(compra);
 
         }else{
             throw new CompraException(validation.getMessage());
