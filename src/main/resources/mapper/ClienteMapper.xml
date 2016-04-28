@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ClienteMapper">
+
+    <select id="getCliente" parameterType="int" resultType="modelos.Cliente">
+        select * from cliente where id_cliente = #{id_cliente}
+    </select>
+
+    <select id="getClientes" resultType="modelos.Cliente">
+        select * from cliente
+    </select>
+
+    <insert id="agregarCliente" parameterType="modelos.Cliente" useGeneratedKeys="true" keyProperty="id_cliente">
+        insert into cliente (nombre, apellidos, cedula, email)
+        values (#{nombre}, #{apellidos}, #{cedula}, #{email});
+    </insert>
+
+    <update id="modificarCliente" parameterType="modelos.Cliente">
+        update cliente set
+        nombre = #{nombre},
+        apellidos = #{apellidos},
+        cedula = #{cedula},
+        email = #{email}
+        where id_cliente = #{id_cliente}
+    </update>
+
+    <delete id="eliminarCliente" parameterType="int">
+      delete from cliente where id_cliente = #{id_cliente};
+    </delete>
+
+</mapper>

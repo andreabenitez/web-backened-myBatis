@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CompraMapper">
+
+    <insert id="agregarCompra" parameterType="modelos.Compra" useGeneratedKeys="true" keyProperty="id_compra">
+        insert into compra(date, total, id_proveedor)
+        values (#{date}, #{total}, #{id_proveedor});
+    </insert>
+
+    <update id="modificarCompra" parameterType="modelos.Compra">
+        update compra set
+        date = #{date},
+        total = #{total},
+        id_proveedor = #{id_proveedor}
+        where id_compra = #{id_compra}
+    </update>
+
+</mapper>
