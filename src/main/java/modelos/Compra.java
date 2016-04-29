@@ -30,6 +30,11 @@ public class Compra {
         this.id_compra = id_compra;
     }
 
+    public void setIdCompra(Integer id) {
+        this.idCompra = id;
+>>>>>>> master
+    }
+
     public String getDate() {
         return date;
     }
