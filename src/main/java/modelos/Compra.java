@@ -31,8 +31,7 @@ public class Compra {
     }
 
     public void setIdCompra(Integer id) {
-        this.idCompra = id;
->>>>>>> master
+        this.id_compra = id;
     }
 
     public String getDate() {

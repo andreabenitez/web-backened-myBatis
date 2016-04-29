@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PagoMapper">
+
+    <insert id="agregarPago" parameterType="modelos.Pago" useGeneratedKeys="true" keyProperty="id_pago">
+        insert into pago(fecha, monto_pagado, id_venta)
+        values (#{fecha}, #{monto_pagado}, #{id_venta});
+    </insert>
+
+</mapper>

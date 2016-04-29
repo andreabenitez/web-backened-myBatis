@@ -23,7 +23,7 @@ import java.util.List;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ProductoDuplicadoServicioMapperImpl implements ProductoDuplicadoServicio{
 
-    @EJB
+    @Inject
     private ProductoServicioMapperImpl productoServicioMapper;
 
     @EJB

@@ -1,55 +1,40 @@
-/*
 package modelos;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
+public class Pago {
 
-@Entity
-@Table(name = "pago")
-@XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "Pago.findAll", query = "SELECT p FROM Pago p"),
-		@NamedQuery(name = "Pago.findById", query = "SELECT p FROM Pago p WHERE p.idPago = :id")
-})
-public class Pago implements Serializable {
+	private Integer id_pago;
 
-	private static final long serialVersionUID = 8157232896330549773L;
+	private Integer id_venta;
 
-	@Id
-	@Column(name = "id_pago")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idPago;
+	private Float monto_pagado;
 
-	@ManyToOne
-	@JoinColumn(name = "id_venta", referencedColumnName = "id_venta")
-	private Venta venta;
-
-	@NotNull
-	@Column(name = "monto_pagado")
-	private Float montoPagado;
-
-	@NotNull
-	@Column(name = "fecha")
 	private String fecha;
 
-
-	public Integer getIdPago() {
-		return idPago;
+	public Pago(){
 	}
 
-	public void setIdPago(Integer id) {
-		this.idPago = id;
+	public Integer getId_pago() {
+		return id_pago;
 	}
 
-
-	public Venta getVenta() {
-		return venta;
+	public void setId_pago(Integer id_pago) {
+		this.id_pago = id_pago;
 	}
 
-	public void setVenta(Venta venta) {
-		this.venta = venta;
+	public Integer getId_venta() {
+		return id_venta;
+	}
+
+	public void setId_venta(Integer id_venta) {
+		this.id_venta = id_venta;
+	}
+
+	public Float getMonto_pagado() {
+		return monto_pagado;
+	}
+
+	public void setMonto_pagado(Float monto_pagado) {
+		this.monto_pagado = monto_pagado;
 	}
 
 	public String getFecha() {
@@ -59,14 +44,4 @@ public class Pago implements Serializable {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-
-	public Float getMontoPagado() {
-		return montoPagado;
-	}
-
-	public void setMontoPagado(Float montoPagado) {
-		this.montoPagado = montoPagado;
-	}
-
 }
-*/
