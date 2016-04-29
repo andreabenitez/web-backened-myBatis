@@ -26,8 +26,8 @@ import java.util.Date;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class VentaServicioMapperImpl implements VentaServicio {
 
-   /* @Resource
-    private SessionContext context;*/
+    /*@Resource
+    private SessionContext sessionContext;*/
 
     @Inject
     private ProductoServicioMapperImpl productoServicioMapper;
@@ -42,9 +42,6 @@ public class VentaServicioMapperImpl implements VentaServicio {
     @Inject
     @Mapper
     VentaDetalleMapper ventaDetalleMapper;
-
-
-
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public int agregarVenta(Venta venta) {
@@ -81,7 +78,7 @@ public class VentaServicioMapperImpl implements VentaServicio {
         }
         catch (Exception e) {
             /*if (e.getCause() instanceof ConstraintViolationException){
-                context.setRollbackOnly();
+                sessionContext.setRollbackOnly();
             }*/
             throw new VentaException("La venta no se pudo realizar " + e.getMessage());
         }
