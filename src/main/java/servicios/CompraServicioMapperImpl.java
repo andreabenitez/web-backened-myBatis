@@ -8,6 +8,7 @@ import modelos.Producto;
 import org.apache.ibatis.session.SqlSession;
 import utils.Validation;
 
+import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
@@ -18,7 +19,7 @@ import java.util.Date;
 /*
  * Created by andrea on 25/04/16.
  */
-
+@Stateless
 public class CompraServicioMapperImpl {
 
 
