@@ -10,9 +10,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
-/**
+ /*
  * Created by andrea on 29/02/16.
  */
+
 
 @Path("/ventas")
 public class VentaRest {
@@ -24,7 +25,7 @@ public class VentaRest {
 
     @POST
     @Consumes("application/json")
-    public Object crearVenta(Venta venta) {
+    public Object crearVenta(Venta venta) throws Exception {
         try {
             return ventaServicioMapper.agregarVenta(venta);
         }catch (VentaException e){

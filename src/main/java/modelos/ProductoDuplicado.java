@@ -14,33 +14,32 @@ public class ProductoDuplicado implements Serializable{
 
     private Integer id_producto_duplicado;
 
-    private Producto cod_Producto;
+    private Producto cod_producto;
 
     private Integer cantidad;
 
     public ProductoDuplicado(Producto codProducto, Integer cantidad) {
-        this.cod_Producto = codProducto;
+        this.cod_producto = codProducto;
         this.cantidad = cantidad;
     }
 
     public ProductoDuplicado() {
     }
 
-
-    public Integer getIdProductoDuplicado() {
+    public Integer getId_producto_duplicado() {
         return id_producto_duplicado;
     }
 
-    public void setIdProductoDuplicado(Integer idProductoDuplicado) {
-        this.id_producto_duplicado = idProductoDuplicado;
+    public void setId_producto_duplicado(Integer id_producto_duplicado) {
+        this.id_producto_duplicado = id_producto_duplicado;
     }
 
-    public Producto getCodProducto() {
-        return cod_Producto;
+    public Producto getCod_producto() {
+        return cod_producto;
     }
 
-    public void setCodProducto(Producto codProducto) {
-        this.cod_Producto = codProducto;
+    public void setCod_producto(Producto cod_producto) {
+        this.cod_producto = cod_producto;
     }
 
     public Integer getCantidad() {

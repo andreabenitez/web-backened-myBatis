@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
 
 //import modelos.ProductoDuplicado;
@@ -37,7 +38,7 @@ public class ProductoRest {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     //@Path("/paginado")
-    public List<Producto> listarProductos() throws TamanoPaginaExcepcion{
+    public List<Producto> listarProductos() throws TamanoPaginaExcepcion, IOException {
         return productoServicioMapper.getProductos();
     }
 
@@ -71,7 +72,7 @@ public class ProductoRest {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Producto buscarProducto(@PathParam("id") Integer id) throws NoExisteProductoException {
+    public Producto buscarProducto(@PathParam("id") Integer id) throws NoExisteProductoException, IOException {
         return productoServicioMapper.buscarProducto(id);
     }
 
@@ -80,7 +81,7 @@ public class ProductoRest {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void modificarProducto(Producto productoModificado) throws NoExisteProveedorException {
+    public void modificarProducto(Producto productoModificado) throws NoExisteProveedorException, IOException {
         productoServicioMapper.modificarProducto(productoModificado);
     }
 

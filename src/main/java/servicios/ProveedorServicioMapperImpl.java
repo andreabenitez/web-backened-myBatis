@@ -1,46 +1,86 @@
 package servicios;
 
+import config.SqlSessionFactoryProvider;
 import mapper.ProveedorMapper;
 import modelos.Proveedor;
-import org.mybatis.cdi.Mapper;
+import org.apache.ibatis.session.SqlSession;
 
+import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.inject.Inject;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by andrea on 25/04/16.
  */
-public class ProveedorServicioMapperImpl implements ProveedorServicio {
+@Stateless
+public class ProveedorServicioMapperImpl {
 
-    @Inject
-    @Mapper
-    ProveedorMapper proveedorMapper;
 
-    @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public List<Proveedor> getProveedores(){
-        return this.proveedorMapper.getProveedores();
+    public List<Proveedor> getProveedores() throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            return sqlSession.selectList("getProveedores");
+        } finally {
+            sqlSession.close();
+        }
     }
 
-    @Override
-    public Proveedor getProveedor(Integer id){
-        return this.proveedorMapper.getProveedor(id);
+    public Proveedor getProveedor(Integer id) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            ProveedorMapper proveedorMapper  = sqlSession.getMapper(ProveedorMapper.class);
+            return proveedorMapper.getProveedor(id);
+        }finally {
+            sqlSession.close();
+        }
     }
 
-    @Override
-    public int agregarProveedor(Proveedor proveedor){
-        return this.proveedorMapper.agregarProveedor(proveedor);
+
+    public int agregarProveedor(Proveedor proveedor) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            return sqlSession.insert("agregarProveedor", proveedor);
+        } finally {
+            sqlSession.close();
+        }
+        //return proveedorMapper.agregarProveedor(proveedor);
     }
 
-    @Override
-    public int modificarProveedor(Proveedor proveedor) {
-        return this.proveedorMapper.modificarProveedor(proveedor);
+
+    public int modificarProveedor(Proveedor proveedor) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            return sqlSession.update("modificarProveedor", proveedor);
+        } finally {
+            sqlSession.close();
+        }
+        //return proveedorMapper.modificarProveedor(proveedor);
     }
 
-    @Override
-    public int eliminarProveedor(Integer id) {
-        return this.proveedorMapper.eliminarProveedor(id);
+
+    public int eliminarProveedor(Integer id) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            return sqlSession.delete("eliminarProveedor", id);
+        } finally {
+            sqlSession.close();
+        }
+        //return proveedorMapper.eliminarProveedor(id);
     }
+
+    public Integer countProveedor(Integer id) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            ProveedorMapper proveedorMapper  = sqlSession.getMapper(ProveedorMapper.class);
+            return proveedorMapper.countProveedor(id);
+        }finally {
+            sqlSession.close();
+        }
+    }
+
+
+
 }

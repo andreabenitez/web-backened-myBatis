@@ -6,7 +6,7 @@
 
     <!--    sentencias sql para producto-->
     <resultMap id="proveedorResult" type="modelos.Proveedor" >
-        <id column="id_proveedor" property="idProveedor" javaType="int" />
+        <id column="id_proveedor" property="id_proveedor" javaType="int" />
         <result column="nombre" property="nombre" javaType="String" />
         <result column="telefono" property="telefono" javaType="String" />
         <result column="direccion" property="direccion" javaType="String" />
@@ -38,7 +38,7 @@
 
     <insert id="agregarProducto" parameterType="modelos.Producto" useGeneratedKeys="true" keyProperty="id_producto">
         insert into producto (nombre, cantidad, descripcion, precio_unitario, id_proveedor)
-        values (#{nombre}, #{cantidad}, #{descripcion}, #{precioUnitario}, #{proveedor.idProveedor});
+        values (#{nombre}, #{cantidad}, #{descripcion}, #{precioUnitario}, #{proveedor.id_proveedor});
     </insert>
 
     <update id="modificarProducto" parameterType="modelos.Producto">
@@ -47,7 +47,7 @@
                 cantidad = #{cantidad},
                 descripcion = #{descripcion},
                 precio_unitario = #{precioUnitario},
-                id_proveedor = #{proveedor.idProveedor}
+                id_proveedor = #{proveedor.id_proveedor}
                 where id_producto = #{idProducto}
     </update>
 

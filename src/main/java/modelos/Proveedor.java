@@ -39,11 +39,11 @@ public class Proveedor  {
         this.nombre = nombre;
     }
 
-    public Integer getIdProveedor() {
+    public Integer getId_proveedor() {
         return id_proveedor;
     }
 
-    public void setIdProveedor(Integer id_proveedor) {
+    public void setId_proveedor(Integer id_proveedor) {
         this.id_proveedor = id_proveedor;
     }
 

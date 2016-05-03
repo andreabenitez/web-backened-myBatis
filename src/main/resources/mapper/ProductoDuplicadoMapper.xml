@@ -7,7 +7,7 @@
     <resultMap id="productoDupicadoResult" type="modelos.ProductoDuplicado">
         <id column="id_producto_duplicado" property="id_producto_duplicado" javaType="Integer" />
         <result column="cantidad" property="cantidad" javaType="Integer" />
-        <association property="producto" column="cod_producto" resultMap="productoResult" />
+        <association property="cod_producto" column="cod_producto" resultMap="productoResult" />
     </resultMap>
 
 

@@ -1,44 +1,69 @@
 package servicios;
 
+import config.SqlSessionFactoryProvider;
 import mapper.ClienteMapper;
 import modelos.Cliente;
-import org.mybatis.cdi.Mapper;
+import org.apache.ibatis.session.SqlSession;
 
-import javax.inject.Inject;
+import javax.ejb.Stateless;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by andrea on 24/04/16.
  */
-public class ClienteServicioMapperImpl implements ClienteServicio {
 
-    @Inject
-    @Mapper
-    ClienteMapper clienteMapper;
+@Stateless
+public class ClienteServicioMapperImpl {
 
-    @Override
-    public List<Cliente> getClientes(){
-        return this.clienteMapper.getClientes();
+    public List<Cliente> getClientes() throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
+            return sqlSession.selectList("getClientes");
+        } finally {
+            sqlSession.close();
+        }
     }
 
-    @Override
-    public Cliente getCliente(Integer id){
-        return this.clienteMapper.getCliente(id);
+    public Cliente getCliente(Integer id) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
+            return clienteMapper.getCliente(id);
+        } finally {
+            sqlSession.close();
+        }
     }
 
-    @Override
-    public int agregarCliente(Cliente cliente){
-        return this.clienteMapper.agregarCliente(cliente);
+    public int agregarCliente(Cliente cliente) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
+            return sqlSession.insert("agregarCliente", cliente);
+        } finally {
+            sqlSession.close();
+        }
     }
 
-    @Override
-    public int modificarCliente(Cliente cliente) {
-        return this.clienteMapper.modificarCliente(cliente);
+    public int modificarCliente(Cliente cliente) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
+            return sqlSession.update("modificarCliente", cliente);
+        } finally {
+            sqlSession.close();
+        }
     }
 
-    @Override
-    public int eliminarCliente(Integer id) {
-        return this.clienteMapper.eliminarCliente(id);
+    public int eliminarCliente(Integer id) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        try {
+            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
+            return sqlSession.delete("eliminarCliente", id);
+        } finally {
+            sqlSession.close();
+        }
     }
 
 }

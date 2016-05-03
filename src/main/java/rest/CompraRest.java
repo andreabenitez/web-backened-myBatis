@@ -2,6 +2,11 @@
 package rest;
 
 
+/*
+ * Created by andrea on 29/02/16.
+ */
+
+
 import modelos.Compra;
 import servicios.CompraServicioMapperImpl;
 
@@ -11,11 +16,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-/**
- * Created by andrea on 29/02/16.
- */
-
 
 @Path("/compras")
 public class CompraRest {

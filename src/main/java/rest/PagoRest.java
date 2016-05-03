@@ -9,7 +9,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-
+import java.io.IOException;
 
 
 @Path("/pagos")
@@ -21,8 +21,7 @@ public class PagoRest {
 
     @POST
     @Consumes("application/json")
-    public Response crearPago(Pago pago)
-    {
+    public Response crearPago(Pago pago) throws IOException {
         try {
             String message = pagoServicioMapper.agregarPago(pago);
             return Response.status(200).entity(message).build();
