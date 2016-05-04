@@ -12,6 +12,8 @@ public interface ClienteMapper {
 
     Cliente getCliente(Integer id);
 
+    int countCliente(Integer id);
+
     List<Cliente> getClientes();
 
     int agregarCliente(Cliente cliente);

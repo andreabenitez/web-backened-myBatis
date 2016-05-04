@@ -2,6 +2,7 @@ package servicios;
 
 import config.SqlSessionFactoryProvider;
 import excepciones.VentaException;
+import mapper.ClienteMapper;
 import mapper.VentaMapper;
 import modelos.Producto;
 import modelos.Venta;
@@ -107,10 +108,10 @@ public class VentaServicioMapperImpl  {
     private Validation validarVenta(Venta venta) throws IOException {
         SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
         try {
-            VentaMapper ventaMapper = sqlSession.getMapper(VentaMapper.class);
+            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             Validation validation = new Validation(false, "");
 
-            if (!(ventaMapper.countVentaById(venta.getId_cliente()) > 0)) {
+            if (!(clienteMapper.countCliente(venta.getId_cliente()) > 0)) {
                 validation.setIsError(true);
                 validation.setMessage(validation.getMessage() + "El id del cliente no es valido. ");
             }

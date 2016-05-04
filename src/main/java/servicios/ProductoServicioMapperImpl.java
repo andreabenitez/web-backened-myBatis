@@ -29,6 +29,7 @@ public class ProductoServicioMapperImpl  {
     @EJB
     private ProductoServicioMapperImpl productoServicioMapper;
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public Producto buscarProducto(Integer productoId) throws IOException {
         SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
         try {

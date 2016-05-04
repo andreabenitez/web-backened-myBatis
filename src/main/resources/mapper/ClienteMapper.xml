@@ -12,6 +12,10 @@
         select * from cliente
     </select>
 
+    <select id="countCliente" parameterType="int" resultType="int">
+        select count(*) from cliente where id_cliente = #{id_cliente}
+    </select>
+
     <insert id="agregarCliente" parameterType="modelos.Cliente" useGeneratedKeys="true" keyProperty="id_cliente">
         insert into cliente (nombre, apellidos, cedula, email)
         values (#{nombre}, #{apellidos}, #{cedula}, #{email});
