@@ -1,7 +1,6 @@
 package servicios;
 
 import config.SqlSessionFactoryProvider;
-import excepciones.NoExisteProveedorException;
 import mapper.ProductoMapper;
 import mapper.ProveedorMapper;
 import modelos.Producto;
@@ -65,18 +64,11 @@ public class ProductoServicioMapperImpl  {
                 Proveedor proveedor = proveedorMapper.getProveedor(producto.getProveedor().getId_proveedor());
                 producto.setProveedor(proveedor);
                 sqlSession.insert("agregarProducto", producto);
-                //productoMapper.agregarProducto(producto);
 
             } catch (Exception e) {
-                String errorMessage = "Ha ocurrido un error durante el proceso: ";
-                if (e instanceof NoExisteProveedorException) {
-                    errorMessage += e.getMessage();
-                } else if (e instanceof PersistenceException) {
+                if (e instanceof PersistenceException) {
                     Producto p = productoServicioMapper.buscarProductoPorNombre(producto.getNombre());
                     productoDuplicadoServicioMapper.agregarProductoDuplicado(p);
-                    sqlSession.insert("agregarProductoDuplicado", producto);
-                    //productoDuplicadoMapper.agregarProductoDuplicado(p);
-                    errorMessage += e.getCause().getMessage();
                 }
             }
         }finally {

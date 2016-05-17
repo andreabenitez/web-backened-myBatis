@@ -46,17 +46,15 @@ public class ProductoDuplicadoServicioMapperImpl
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
 
-            ProductoDuplicado duplicado = productoDuplicadoServicioMapper.buscarProductoDuplicadoPorProducto(producto);
-            if (duplicado == null) {
-                duplicado = new ProductoDuplicado();
-                duplicado.setCod_producto(producto);
-                duplicado.setCantidad(1);
-                sqlSession.insert("guardarProductoDuplicado", duplicado);
-                //this.productoDuplicadoMapper.guardarProductoDuplicado(duplicado);
+            ProductoDuplicado productoDuplicado = productoDuplicadoServicioMapper.buscarProductoDuplicadoPorProducto(producto.getIdProducto());
+            if (productoDuplicado == null) {
+                productoDuplicado = new ProductoDuplicado();
+                productoDuplicado.setCod_producto(producto.getIdProducto());
+                productoDuplicado.setCantidad(1);
+                sqlSession.insert("agregarProductoDuplicado", productoDuplicado);
             } else {
-                duplicado.setCantidad(duplicado.getCantidad() + 1);
-                sqlSession.update("upDate", duplicado);
-                //this.productoDuplicadoMapper.upDate(duplicado);
+                productoDuplicado.setCantidad(productoDuplicado.getCantidad() + 1);
+                sqlSession.update("modificarProductoDuplicado", productoDuplicado);
             }
         } finally {
             sqlSession.close();
@@ -66,16 +64,16 @@ public class ProductoDuplicadoServicioMapperImpl
 
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public ProductoDuplicado  buscarProductoDuplicadoPorProducto(Producto producto) throws IOException {
+    public ProductoDuplicado  buscarProductoDuplicadoPorProducto(Integer codProducto) throws IOException {
 
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProductoDuplicadoMapper productoDuplicadoMapper = sqlSession.getMapper(ProductoDuplicadoMapper.class);
-            return productoDuplicadoMapper.buscarProductoDuplicadoPorProducto(producto);
+            return productoDuplicadoMapper.buscarProductoDuplicadoPorCodProducto(codProducto);
         } finally {
             sqlSession.close();
         }
-        //return this.productoDuplicadoMapper.buscarProductoDuplicadoPorProducto(producto);
+
 
     }
     public int upDate(ProductoDuplicado productoDuplicado) throws IOException {
@@ -85,7 +83,7 @@ public class ProductoDuplicadoServicioMapperImpl
         } finally {
             sqlSession.close();
         }
-        //this.productoDuplicadoMapper.upDate(productoDuplicado);
+
     }
 
     public int guardarProductoDuplicado(ProductoDuplicado productoDuplicado) throws IOException {
