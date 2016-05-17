@@ -5,6 +5,7 @@ import mapper.ProveedorMapper;
 import modelos.Proveedor;
 import org.apache.ibatis.session.SqlSession;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -17,10 +18,13 @@ import java.util.List;
 @Stateless
 public class ProveedorServicioMapperImpl {
 
+    @EJB
+    private SqlSessionFactoryProvider sqlSessionFactoryProvider;
+
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public List<Proveedor> getProveedores() throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.selectList("getProveedores");
         } finally {
@@ -29,7 +33,7 @@ public class ProveedorServicioMapperImpl {
     }
 
     public Proveedor getProveedor(Integer id) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProveedorMapper proveedorMapper  = sqlSession.getMapper(ProveedorMapper.class);
             return proveedorMapper.getProveedor(id);
@@ -40,7 +44,7 @@ public class ProveedorServicioMapperImpl {
 
 
     public int agregarProveedor(Proveedor proveedor) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.insert("agregarProveedor", proveedor);
         } finally {
@@ -51,7 +55,7 @@ public class ProveedorServicioMapperImpl {
 
 
     public int modificarProveedor(Proveedor proveedor) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.update("modificarProveedor", proveedor);
         } finally {
@@ -62,7 +66,7 @@ public class ProveedorServicioMapperImpl {
 
 
     public int eliminarProveedor(Integer id) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.delete("eliminarProveedor", id);
         } finally {
@@ -72,7 +76,7 @@ public class ProveedorServicioMapperImpl {
     }
 
     public Integer countProveedor(Integer id) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProveedorMapper proveedorMapper  = sqlSession.getMapper(ProveedorMapper.class);
             return proveedorMapper.countProveedor(id);

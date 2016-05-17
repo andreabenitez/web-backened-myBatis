@@ -1,10 +1,12 @@
 package servicios;
 
+
 import config.SqlSessionFactoryProvider;
 import mapper.ClienteMapper;
 import modelos.Cliente;
 import org.apache.ibatis.session.SqlSession;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.io.IOException;
 import java.util.List;
@@ -16,8 +18,11 @@ import java.util.List;
 @Stateless
 public class ClienteServicioMapperImpl {
 
+    @EJB
+    private SqlSessionFactoryProvider sqlSessionFactoryProvider;
+
     public List<Cliente> getClientes() throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return sqlSession.selectList("getClientes");
@@ -27,7 +32,7 @@ public class ClienteServicioMapperImpl {
     }
 
     public Cliente getCliente(Integer id) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return clienteMapper.getCliente(id);
@@ -37,7 +42,7 @@ public class ClienteServicioMapperImpl {
     }
 
     public int agregarCliente(Cliente cliente) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return sqlSession.insert("agregarCliente", cliente);
@@ -47,7 +52,7 @@ public class ClienteServicioMapperImpl {
     }
 
     public int modificarCliente(Cliente cliente) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return sqlSession.update("modificarCliente", cliente);
@@ -57,8 +62,9 @@ public class ClienteServicioMapperImpl {
     }
 
     public int eliminarCliente(Integer id) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
+
             ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return sqlSession.delete("eliminarCliente", id);
         } finally {

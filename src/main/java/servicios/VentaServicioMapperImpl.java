@@ -32,11 +32,14 @@ public class VentaServicioMapperImpl  {
     @Inject
     private ProductoServicioMapperImpl productoServicioMapper;
 
+    @EJB
+    private SqlSessionFactoryProvider sqlSessionFactoryProvider;
+
 
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public int agregarVenta(Venta venta) throws IOException, VentaException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             try {
 
@@ -84,7 +87,7 @@ public class VentaServicioMapperImpl  {
     }
 
     public int modificarVenta(Venta venta) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.update("modificarVenta", venta);
             //return ventaMapper.modificarVenta(venta);
@@ -95,7 +98,7 @@ public class VentaServicioMapperImpl  {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public Venta buscarVentaPorId(Integer id) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             VentaMapper ventaMapper = sqlSession.getMapper(VentaMapper.class);
             return ventaMapper.getVenta(id);
@@ -106,7 +109,7 @@ public class VentaServicioMapperImpl  {
     }
 
     private Validation validarVenta(Venta venta) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             Validation validation = new Validation(false, "");

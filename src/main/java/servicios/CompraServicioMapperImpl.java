@@ -8,6 +8,7 @@ import modelos.Producto;
 import org.apache.ibatis.session.SqlSession;
 import utils.Validation;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -22,6 +23,8 @@ import java.util.Date;
 @Stateless
 public class CompraServicioMapperImpl {
 
+    @EJB
+    private SqlSessionFactoryProvider sqlSessionFactoryProvider;
 
     @Inject
     ProductoServicioMapperImpl productoServicioMapper;
@@ -41,7 +44,7 @@ public class CompraServicioMapperImpl {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public int crearCompra(Compra compra) throws CompraException, IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
 
             String dateString = new SimpleDateFormat("yyyy-MM-dd").format(new Date());

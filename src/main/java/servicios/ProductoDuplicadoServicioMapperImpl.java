@@ -23,6 +23,8 @@ import java.util.List;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ProductoDuplicadoServicioMapperImpl
 {
+    @EJB
+    private SqlSessionFactoryProvider sqlSessionFactoryProvider;
 
     @EJB
     private ProductoServicioMapperImpl productoServicioMapper;
@@ -41,7 +43,7 @@ public class ProductoDuplicadoServicioMapperImpl
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void agregarProductoDuplicado(Producto producto) throws Exception {
 
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
 
             ProductoDuplicado duplicado = productoDuplicadoServicioMapper.buscarProductoDuplicadoPorProducto(producto);
@@ -66,7 +68,7 @@ public class ProductoDuplicadoServicioMapperImpl
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public ProductoDuplicado  buscarProductoDuplicadoPorProducto(Producto producto) throws IOException {
 
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProductoDuplicadoMapper productoDuplicadoMapper = sqlSession.getMapper(ProductoDuplicadoMapper.class);
             return productoDuplicadoMapper.buscarProductoDuplicadoPorProducto(producto);
@@ -77,7 +79,7 @@ public class ProductoDuplicadoServicioMapperImpl
 
     }
     public int upDate(ProductoDuplicado productoDuplicado) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.update("upDate", productoDuplicado);
         } finally {
@@ -87,7 +89,7 @@ public class ProductoDuplicadoServicioMapperImpl
     }
 
     public int guardarProductoDuplicado(ProductoDuplicado productoDuplicado) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.insert("guardarProductoDuplicado", productoDuplicado);
         } finally {

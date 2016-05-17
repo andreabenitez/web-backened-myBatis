@@ -22,6 +22,8 @@ import java.util.List;
 @Stateless
 public class ProductoServicioMapperImpl  {
 
+    @EJB
+    private SqlSessionFactoryProvider sqlSessionFactoryProvider;
 
     @EJB
     private ProductoDuplicadoServicioMapperImpl productoDuplicadoServicioMapper;
@@ -29,9 +31,9 @@ public class ProductoServicioMapperImpl  {
     @EJB
     private ProductoServicioMapperImpl productoServicioMapper;
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Producto buscarProducto(Integer productoId) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProductoMapper productoMapper = sqlSession.getMapper(ProductoMapper.class);
             return productoMapper.buscarProducto(productoId);
@@ -41,7 +43,7 @@ public class ProductoServicioMapperImpl  {
     }
 
     public List<Producto> getProductos() throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.selectList("getProductos");
             //return productoMapper.getProductos();
@@ -54,7 +56,7 @@ public class ProductoServicioMapperImpl  {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void agregarProducto(Producto producto) throws Exception {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProveedorMapper proveedorMapper = sqlSession.getMapper(ProveedorMapper.class);
             ProductoMapper productoMapper = sqlSession.getMapper(ProductoMapper.class);
@@ -86,7 +88,7 @@ public class ProductoServicioMapperImpl  {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public Producto buscarProductoPorNombre(String nombre) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProductoMapper productoMapper = sqlSession.getMapper(ProductoMapper.class);
             return productoMapper.buscarProductoPorNombre(nombre);
@@ -98,7 +100,7 @@ public class ProductoServicioMapperImpl  {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void modificarProducto(Producto producto) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProveedorMapper proveedorMapper = sqlSession.getMapper(ProveedorMapper.class);
             Proveedor proveedor = proveedorMapper.getProveedor(producto.getProveedor().getId_proveedor());
@@ -111,7 +113,7 @@ public class ProductoServicioMapperImpl  {
     }
 
     public Integer eliminarProducto(Integer productoId) throws IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.delete("eliminarProducto", productoId);
         } finally {

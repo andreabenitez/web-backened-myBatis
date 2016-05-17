@@ -10,6 +10,7 @@ import modelos.Pago;
 import modelos.Venta;
 import org.apache.ibatis.session.SqlSession;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -22,6 +23,8 @@ import java.util.Date;
 @Stateless
 public class PagoServicioMapperImpl {
 
+    @EJB
+    private SqlSessionFactoryProvider sqlSessionFactoryProvider;
 
     @Inject
     private VentaServicioMapperImpl ventaServicioMapper;
@@ -29,7 +32,7 @@ public class PagoServicioMapperImpl {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public String agregarPago(Pago pago) throws PagoException, IOException {
-        SqlSession sqlSession = SqlSessionFactoryProvider.produceFactory().openSession();
+        SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             try {
                 String mensajeRespuesta;
