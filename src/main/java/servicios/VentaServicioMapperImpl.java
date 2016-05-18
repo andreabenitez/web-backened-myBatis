@@ -61,13 +61,10 @@ public class VentaServicioMapperImpl  {
                         total = total + (producto.getPrecioUnitario() * ventaDetalle.getCantidad()) * new Float(1.1);
                     }
                     sqlSession.insert("insertVentaDetalles", venta);
-                    //ventaDetalleMapper.insertVentaDetalles(venta);
 
                     venta.setTotal(total);
                     venta.setSaldo_deuda(total);
                     return sqlSession.update("modificarVenta", venta);
-                    //return ventaMapper.modificarVenta(venta);
-
                 } else {
                     throw new VentaException(validation.getMessage());
                 }
@@ -75,10 +72,6 @@ public class VentaServicioMapperImpl  {
             } catch (VentaException e) {
                 throw e;
             } catch (Exception e) {
-                /*if (e instanceof PersistenceException) {
-                    context.setRollbackOnly();
-                }*/
-
                 throw new VentaException("La venta no se pudo realizar " + e.getMessage());
             }
         } finally {
@@ -90,7 +83,6 @@ public class VentaServicioMapperImpl  {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             return sqlSession.update("modificarVenta", venta);
-            //return ventaMapper.modificarVenta(venta);
         } finally {
             sqlSession.close();
         }
