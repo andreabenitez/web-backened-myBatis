@@ -1,7 +1,9 @@
 package rest;
 
 import modelos.Cliente;
+import modelos.Usuario;
 import servicios.ClienteServicioMapperImpl;
+import servicios.UsuarioServicioMapperImpl;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -19,6 +21,9 @@ public class ClienteRest {
     @Inject
     private ClienteServicioMapperImpl clienteServicioMapper;
 
+    @Inject
+    private UsuarioServicioMapperImpl usuarioServicioMapper;
+
     /**
      * Retorna un cliente de acuerdo al id recibido como parametro
      * @param id
@@ -26,9 +31,10 @@ public class ClienteRest {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
-    public Cliente buscarCliente(@PathParam("id") Integer id) throws Exception{
-        return clienteServicioMapper.getCliente(id);
+    @Path("/{username}")
+    public Usuario buscarCliente(@PathParam("username") String username) throws Exception{
+        //return clienteServicioMapper.getCliente(id);
+        return usuarioServicioMapper.getUsuarioByUsername(username);
     }
 
     /**
@@ -36,11 +42,17 @@ public class ClienteRest {
      * @return List<Cliente>
      */
 
-    @GET
+/*    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cliente> listarClientes() throws IOException {
          return clienteServicioMapper.getClientes();
+    }*/
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Usuario> listarClientes() throws IOException {
+        return usuarioServicioMapper.getUsuarios();
     }
+
 
 
     /**

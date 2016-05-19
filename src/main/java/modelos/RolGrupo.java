@@ -9,7 +9,7 @@ public class RolGrupo {
 
     private Integer rol_grupo_id;
     private String nombre;
-    private List<RolesGrupoRol> rolesGrupoRolList;
+    //private List<RolesGrupoRol> rolesGrupoRolList;
 
     public RolGrupo(){
     }
@@ -35,11 +35,11 @@ public class RolGrupo {
         this.nombre = nombre;
     }
 
-    public List<RolesGrupoRol> getRolesGrupoRolList() {
+    /*public List<RolesGrupoRol> getRolesGrupoRolList() {
         return rolesGrupoRolList;
     }
 
     public void setRolesGrupoRolList(List<RolesGrupoRol> rolesGrupoRolList) {
         this.rolesGrupoRolList = rolesGrupoRolList;
-    }
+    }*/
 }

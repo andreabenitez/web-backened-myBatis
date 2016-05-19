@@ -22,6 +22,7 @@
         <mapper resource="mapper/VentaMapper.xml" />
         <mapper resource="mapper/VentaDetalleMapper.xml" />
         <mapper resource="mapper/PagoMapper.xml" />
+        <mapper resource="mapper/UsuarioMapper.xml" />
 
     </mappers>
 </configuration>
