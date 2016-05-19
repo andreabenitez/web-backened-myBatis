@@ -18,7 +18,7 @@
 -->
         <resultMap id="rolGrupoResult" type="modelos.RolGrupo" >
             <id column="rol_grupo_id" property="rol_grupo_id" javaType="int" />
-            <result column="nombre" property="nombre" javaType="String" />
+            <result column="nombre_rol" property="nombreRol" javaType="String" />
         </resultMap>
 
     <resultMap id="usuarioResult" type="modelos.Usuario" >
@@ -29,7 +29,7 @@
     </resultMap>
 
     <select id="getUsuarioByUsername" parameterType="String" resultMap="usuarioResult">
-        select username as username, usuario.nombre as nombre, password as password, rol_grupo.rol_grupo_id, rol_grupo.nombre from usuario inner join rol_grupo on rol_grupo.rol_grupo_id = rol_grupo.rol_grupo_id
+        select username as username, usuario.nombre as nombre, password as password, rol_grupo.rol_grupo_id, rol_grupo.nombre_rol from usuario inner join rol_grupo on rol_grupo.rol_grupo_id = rol_grupo.rol_grupo_id
         where usuario.username = #{username};
     </select>
 

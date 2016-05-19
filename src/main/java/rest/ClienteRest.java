@@ -29,12 +29,19 @@ public class ClienteRest {
      * @param id
      * @return
      */
-    @GET
+ /*   @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}")
     public Usuario buscarCliente(@PathParam("username") String username) throws Exception{
         //return clienteServicioMapper.getCliente(id);
         return usuarioServicioMapper.getUsuarioByUsername(username);
+    }*/
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Cliente buscarCliente(@PathParam("id") Integer id) throws Exception{
+        return clienteServicioMapper.getCliente(id);
+
     }
 
     /**
@@ -42,16 +49,16 @@ public class ClienteRest {
      * @return List<Cliente>
      */
 
-/*    @GET
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cliente> listarClientes() throws IOException {
          return clienteServicioMapper.getClientes();
-    }*/
-    @GET
+    }
+/*    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Usuario> listarClientes() throws IOException {
         return usuarioServicioMapper.getUsuarios();
-    }
+    }*/
 
 
 
