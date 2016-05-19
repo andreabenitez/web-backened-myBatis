@@ -10,12 +10,14 @@ package rest;
 import modelos.Compra;
 import servicios.CompraServicioMapperImpl;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 
 @Path("/compras")
 public class CompraRest {
@@ -24,7 +26,7 @@ public class CompraRest {
     private CompraServicioMapperImpl compraServicios;
 
 
-
+    @RolesAllowed("compra")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)

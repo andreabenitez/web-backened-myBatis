@@ -4,6 +4,7 @@ import excepciones.PagoException;
 import modelos.Pago;
 import servicios.PagoServicioMapperImpl;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -19,6 +20,7 @@ public class PagoRest {
     private PagoServicioMapperImpl pagoServicioMapper;
 
 
+    @PermitAll
     @POST
     @Consumes("application/json")
     public Response crearPago(Pago pago) throws IOException {

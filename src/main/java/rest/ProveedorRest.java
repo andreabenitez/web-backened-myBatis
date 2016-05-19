@@ -4,6 +4,7 @@ import excepciones.NoExisteProveedorException;
 import modelos.Proveedor;
 import servicios.ProveedorServicioMapperImpl;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -23,6 +24,7 @@ public class ProveedorRest {
      *
      * @return
      */
+    @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Object listarProveedores() throws IOException {
@@ -38,7 +40,7 @@ public class ProveedorRest {
      * @param proveedor
      * @return
      */
-
+    @PermitAll
     @POST
     @Consumes("application/json")
     public void crearProveedor(Proveedor proveedor) throws IOException{
@@ -51,7 +53,7 @@ public class ProveedorRest {
      * @param id
      * @return
      */
-
+    @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
@@ -65,6 +67,7 @@ public class ProveedorRest {
      * @return
      */
 
+    @PermitAll
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -80,6 +83,7 @@ public class ProveedorRest {
      * @return
      */
 
+    @PermitAll
     @DELETE
     @Path("{id}")
     public void eliminarProveedor(@PathParam("id") Integer id) throws IOException{

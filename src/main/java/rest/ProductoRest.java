@@ -8,6 +8,7 @@ import modelos.Producto;
 import servicios.ProductoDuplicadoServicioMapperImpl;
 import servicios.ProductoServicioMapperImpl;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -51,6 +52,7 @@ public class ProductoRest {
     }*/
 
 
+    @PermitAll
     @POST
     @Consumes("application/json")
     public void crearProducto(Producto producto) throws Exception {
@@ -58,6 +60,7 @@ public class ProductoRest {
 
     }
 
+    @PermitAll
     @POST
     @Consumes("application/json")
     @Path("/insertalista")
@@ -68,7 +71,7 @@ public class ProductoRest {
     }
 
 
-
+    @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
@@ -77,7 +80,7 @@ public class ProductoRest {
     }
 
 
-
+    @PermitAll
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -85,7 +88,7 @@ public class ProductoRest {
         productoServicioMapper.modificarProducto(productoModificado);
     }
 
-
+    @PermitAll
     @DELETE
     @Path("{id}")
     public Object eliminarProducto(@PathParam("id") Integer id) {

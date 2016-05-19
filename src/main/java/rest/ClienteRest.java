@@ -3,6 +3,7 @@ package rest;
 import modelos.Cliente;
 import servicios.ClienteServicioMapperImpl;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -24,6 +25,7 @@ public class ClienteRest {
      * @param id
      * @return
      */
+    @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
@@ -35,7 +37,7 @@ public class ClienteRest {
      * Lista todos los clientes
      * @return List<Cliente>
      */
-
+    @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cliente> listarClientes() throws IOException {
@@ -48,7 +50,7 @@ public class ClienteRest {
      * @param cliente
      * @return
      */
-
+    @PermitAll
     @POST
     @Consumes("application/json")
     public void crearCliente(Cliente cliente) throws IOException{
@@ -63,7 +65,7 @@ public class ClienteRest {
      * @param clienteModificado
      * @return
      */
-
+    @PermitAll
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -76,7 +78,7 @@ public class ClienteRest {
      * @param id
      * @return
      */
-
+    @PermitAll
     @DELETE
     @Path("{id}")
     public void eliminarCliente(@PathParam("id") int id) throws IOException{

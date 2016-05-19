@@ -4,6 +4,7 @@ import excepciones.VentaException;
 import modelos.Venta;
 import servicios.VentaServicioMapperImpl;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -23,6 +24,7 @@ public class VentaRest {
 
 
 
+    @RolesAllowed("venta")
     @POST
     @Consumes("application/json")
     public Object crearVenta(Venta venta) throws Exception {
