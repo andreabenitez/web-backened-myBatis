@@ -4,32 +4,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.UsuarioMapper">
 
-   <!-- <resultMap id="rolesResult" type="modelos.Roles" >
-        <id column="rol_id" property="rol_id" javaType="int" />
-        <result column="nombre" property="nombre" javaType="String" />
+    <!-- <resultMap id="rolesResult" type="modelos.Roles" >
+         <id column="rol_id" property="rol_id" javaType="int" />
+         <result column="nombre" property="nombre" javaType="String" />
+     </resultMap>
+
+
+
+ -->
+    <resultMap id="rolesGrupoRolResult" type="modelos.RolesGrupoRol">
+        <id column="roles_grupo_rol_id" property="roles_grupo_rol_id" javaType="int"/>
+        <result column="rol_grupo_id" property="rol_grupo_id" javaType="int"/>
+        <association property="role_id" column="role_id" resultMap="rolesResult"/>
     </resultMap>
 
-        <resultMap id="rolesGrupoRolResult" type="modelos.RolesGrupoRol" >
-            <id column="roles_grupo_rol_id" property="roles_grupo_rol_id" javaType="int" />
-            <result column="rol_grupo_id" property="rol_grupo_id" javaType="int" />
-            <result column="role_id" property="role_id" javaType="int" />
-        </resultMap>
+    <resultMap id="rolesResult" type="modelos.Roles">
+        <id column="rol_id" property="rol_id" javaType="int"/>
+        <result column="nombre" property="nombre" javaType="String"/>
+    </resultMap>
 
--->
-        <resultMap id="rolGrupoResult" type="modelos.RolGrupo" >
-            <id column="rol_grupo_id" property="rol_grupo_id" javaType="int" />
-            <result column="nombre_rol" property="nombreRol" javaType="String" />
-        </resultMap>
+    <resultMap id="rolGrupoResult" type="modelos.RolGrupo">
+        <id column="rol_grupo_id" property="rol_grupo_id" javaType="int"/>
+        <result column="nombre_rol_grupo" property="nombreRolGrupo" javaType="String"/>
+    </resultMap>
 
-    <resultMap id="usuarioResult" type="modelos.Usuario" >
-        <id column="username" property="username" javaType="String" />
-        <result column="nombre" property="nombre" javaType="String" />
-        <result column="password" property="password" javaType="String" />
-        <association property="rolGrupo" column="rol_grupo_id" resultMap="rolGrupoResult" />
+    <resultMap id="usuarioResult" type="modelos.Usuario">
+        <id column="username" property="username" javaType="String"/>
+        <result column="nombre" property="nombre" javaType="String"/>
+        <result column="password" property="password" javaType="String"/>
+        <association property="rolGrupo" column="rol_grupo_id" resultMap="rolGrupoResult"/>
     </resultMap>
 
     <select id="getUsuarioByUsername" parameterType="String" resultMap="usuarioResult">
-        select username as username, usuario.nombre as nombre, password as password, rol_grupo.rol_grupo_id, rol_grupo.nombre_rol from usuario inner join rol_grupo on rol_grupo.rol_grupo_id = rol_grupo.rol_grupo_id
+        select username as username, usuario.nombre as nombre, password as password, rol_grupo.rol_grupo_id, rol_grupo.nombre_rol_grupo from usuario inner join rol_grupo on rol_grupo.rol_grupo_id = usuario.roles_grupo_id
         where usuario.username = #{username};
     </select>
 
@@ -37,10 +44,10 @@
         select * from usuario
     </select>
 
-    <select id="getRolesGrupoRol" parameterType="int" resultType="modelos.RolesGrupoRol">
-       select * from roles_grupo_rol where rol_grupo_id = #{id}
+    <select id="getRolesGrupoRol" parameterType="int" resultMap="rolesGrupoRolResult">
+       select *
+          from roles_grupo_rol JOIN roles on roles_grupo_rol.rol_id=roles.rol_id where rol_grupo_id = #{id}
     </select>
-
 
 
 </mapper>

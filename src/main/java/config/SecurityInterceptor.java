@@ -1,5 +1,9 @@
 package config;
 
+import modelos.RolGrupo;
+import modelos.Roles;
+import modelos.RolesGrupoRol;
+import modelos.Usuario;
 import org.jboss.resteasy.annotations.interception.ServerInterceptor;
 import org.jboss.resteasy.core.Headers;
 import org.jboss.resteasy.core.ResourceMethod;
@@ -8,10 +12,12 @@ import org.jboss.resteasy.spi.Failure;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.interception.PreProcessInterceptor;
 import org.jboss.resteasy.util.Base64;
+import servicios.UsuarioServicioMapperImpl;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
@@ -26,6 +32,10 @@ import java.util.*;
 @ServerInterceptor
 public class SecurityInterceptor implements PreProcessInterceptor
 {
+
+    @Inject
+    private UsuarioServicioMapperImpl usuarioServicioMapper;
+
     private static final String AUTHORIZATION_PROPERTY = "Authorization";
     private static final String AUTHENTICATION_SCHEME = "Basic";
     private static final ServerResponse ACCESS_DENIED = new ServerResponse("Access denied for this resource", 401, new Headers<Object>());;
@@ -101,17 +111,30 @@ public class SecurityInterceptor implements PreProcessInterceptor
     {
         boolean isAllowed = false;
 
-        //Step 1. Fetch password from database and match with password in argument
-        //If both match then get the defined role for user from database and continue; else return isAllowed [false]
-        //Access the database and do this part yourself
-        //String userRole = userMgr.getUserRole(username);
-        String userRole = "ADMIN";
+        Usuario usuario = usuarioServicioMapper.getUsuarioByUsername(username);
 
-        //Step 2. Verify user role
-        if(rolesSet.contains(userRole))
-        {
-            isAllowed = true;
+        if(password.equals(usuario.getPassword())) {
+            RolGrupo rolGrupo = usuario.getRolGrupo();
+            List<RolesGrupoRol> rolesGrupoRolList = usuarioServicioMapper.getRolesGrupoRol(rolGrupo.getRol_grupo_id());
+            List<Roles> rolesListUsuario = new ArrayList<>();
+            for (RolesGrupoRol rolesGrupoRol : rolesGrupoRolList){
+                rolesListUsuario.add(rolesGrupoRol.getRole_id());
+            }
+
+            //Step 1. Fetch password from database and match with password in argument
+            //If both match then get the defined role for user from database and continue; else return isAllowed [false]
+            //Access the database and do this part yourself
+            //String userRole = userMgr.getUserRole(username);
+
+            //Step 2. Verify user role
+            for(Roles roles : rolesListUsuario ){
+                if (rolesSet.contains(roles.getNombre())) {
+                    isAllowed = true;
+                }
+            }
+
         }
+
         return isAllowed;
     }
 

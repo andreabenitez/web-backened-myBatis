@@ -1,14 +1,12 @@
 package modelos;
 
-import java.util.List;
-
 /**
  * Created by andrea on 17/05/16.
  */
 public class RolGrupo {
 
     private Integer rol_grupo_id;
-    private String nombreRol;
+    private String nombreRolGrupo;
     //private List<RolesGrupoRol> rolesGrupoRolList;
 
     public RolGrupo(){
@@ -16,7 +14,7 @@ public class RolGrupo {
 
     public RolGrupo(Integer rol_grupo_id, String nombre) {
         this.rol_grupo_id = rol_grupo_id;
-        this.nombreRol = nombre;
+        this.nombreRolGrupo = nombre;
     }
 
     public Integer getRol_grupo_id() {
@@ -28,11 +26,11 @@ public class RolGrupo {
     }
 
     public String getNombre() {
-        return nombreRol;
+        return nombreRolGrupo;
     }
 
     public void setNombre(String nombre) {
-        this.nombreRol = nombre;
+        this.nombreRolGrupo = nombre;
     }
 
     /*public List<RolesGrupoRol> getRolesGrupoRolList() {

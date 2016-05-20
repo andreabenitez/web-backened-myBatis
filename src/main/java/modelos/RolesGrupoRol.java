@@ -7,7 +7,7 @@ public class RolesGrupoRol {
 
     private Integer roles_grupo_rol_id;
     private Integer rol_grupo_id;
-    private Integer role_id;
+    private Roles role_id;
 
     public RolesGrupoRol(){}
 
@@ -19,11 +19,11 @@ public class RolesGrupoRol {
         this.roles_grupo_rol_id = roles_grupo_rol_id;
     }
 
-    public Integer getRole_id() {
+    public Roles getRole_id() {
         return role_id;
     }
 
-    public void setRole_id(Integer role_id) {
+    public void setRole_id(Roles role_id) {
         this.role_id = role_id;
     }
 

@@ -8,8 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -25,7 +23,7 @@ public class UsuarioServicioMapperImpl {
     @EJB
     private UsuarioServicioMapperImpl usuarioServicioMapper;
 
-    public List<Usuario> getUsuarios() throws IOException {
+    public List<Usuario> getUsuarios()  {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             UsuarioMapper usuarioMapper = sqlSession.getMapper(UsuarioMapper.class);
@@ -35,19 +33,18 @@ public class UsuarioServicioMapperImpl {
         }
     }
 
-    public Usuario getUsuarioByUsername(String username) throws IOException {
+    public Usuario getUsuarioByUsername(String username)  {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             UsuarioMapper usuarioMapper = sqlSession.getMapper(UsuarioMapper.class);
             Usuario usuario = usuarioMapper.getUsuarioByUsername(username);
-            List<RolesGrupoRol> lista = usuarioServicioMapper.getRolesGrupoRol(usuario.getRolGrupo().getRol_grupo_id());
             return usuario;
         } finally {
             sqlSession.close();
         }
     }
 
-    public List<RolesGrupoRol> getRolesGrupoRol (Integer id)throws IOException {
+    public List<RolesGrupoRol> getRolesGrupoRol (Integer id) {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             UsuarioMapper usuarioMapper = sqlSession.getMapper(UsuarioMapper.class);
