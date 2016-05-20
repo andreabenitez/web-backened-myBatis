@@ -34,7 +34,7 @@ public class CompraRest {
         try {
             compraServicios.agregarCompra(compra);
             return Response.status(200).entity("Se ha creado correctamete la compra").build();
-        }catch(Exception e){
+        } catch(Exception e){
             return Response.status(500).entity("Ha ocurrido un error durante el proceso de compra: " + e.getMessage()).build();
         }
     }

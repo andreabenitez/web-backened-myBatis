@@ -11,7 +11,6 @@ import org.jboss.resteasy.core.ServerResponse;
 import org.jboss.resteasy.spi.Failure;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.interception.PreProcessInterceptor;
-import org.jboss.resteasy.util.Base64;
 import servicios.UsuarioServicioMapperImpl;
 
 import javax.annotation.security.DenyAll;
@@ -21,7 +20,6 @@ import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -70,7 +68,7 @@ public class SecurityInterceptor implements PreProcessInterceptor
             return ACCESS_DENIED;
         }
 
-        //Get encoded username and password
+        /*//Get encoded username and password
         final String encodedUserPassword = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
 
         //Decode username and password
@@ -79,16 +77,18 @@ public class SecurityInterceptor implements PreProcessInterceptor
             usernameAndPassword = new String(Base64.decode(encodedUserPassword));
         } catch (IOException e) {
             return SERVER_ERROR;
-        }
+        }*/
 
-        //Split username and password tokens
+        final String access_token = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
+
+        /*//Split username and password tokens
         final StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");
         final String username = tokenizer.nextToken();
         final String password = tokenizer.nextToken();
 
         //Verifying Username and password
         System.out.println(username);
-        System.out.println(password);
+        System.out.println(password);*/
 
         //Verify user access
         if(method.isAnnotationPresent(RolesAllowed.class))
@@ -97,7 +97,7 @@ public class SecurityInterceptor implements PreProcessInterceptor
             Set<String> rolesSet = new HashSet<String>(Arrays.asList(rolesAnnotation.value()));
 
             //Is user valid?
-            if( ! isUserAllowed(username, password, rolesSet))
+            if( ! isUserAllowed(access_token, rolesSet))
             {
                 return ACCESS_DENIED;
             }
@@ -107,13 +107,13 @@ public class SecurityInterceptor implements PreProcessInterceptor
         return null;
     }
 
-    private boolean isUserAllowed(final String username, final String password,	final Set<String> rolesSet)
+    private boolean isUserAllowed(/*final String username, final String password,*/String access_token,	final Set<String> rolesSet)
     {
         boolean isAllowed = false;
 
-        Usuario usuario = usuarioServicioMapper.getUsuarioByUsername(username);
+        Usuario usuario = usuarioServicioMapper.getUsuarioByAccessToken(access_token);
 
-        if(password.equals(usuario.getPassword())) {
+        if(usuario != null) {
             RolGrupo rolGrupo = usuario.getRolGrupo();
             List<RolesGrupoRol> rolesGrupoRolList = usuarioServicioMapper.getRolesGrupoRol(rolGrupo.getRol_grupo_id());
             List<Roles> rolesListUsuario = new ArrayList<>();
@@ -121,12 +121,6 @@ public class SecurityInterceptor implements PreProcessInterceptor
                 rolesListUsuario.add(rolesGrupoRol.getRole_id());
             }
 
-            //Step 1. Fetch password from database and match with password in argument
-            //If both match then get the defined role for user from database and continue; else return isAllowed [false]
-            //Access the database and do this part yourself
-            //String userRole = userMgr.getUserRole(username);
-
-            //Step 2. Verify user role
             for(Roles roles : rolesListUsuario ){
                 if (rolesSet.contains(roles.getNombre())) {
                     isAllowed = true;

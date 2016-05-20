@@ -9,15 +9,17 @@ public class Usuario {
     private String nombre;
     private String password;
     private RolGrupo rolGrupo;
+    private String access_token;
 
     public Usuario(){
     }
 
-    public Usuario(String username, String nombre, String password, RolGrupo rolGrupo) {
+    public Usuario(String username, String access_token, RolGrupo rolGrupo, String password, String nombre) {
         this.username = username;
-        this.nombre = nombre;
-        this.password = password;
+        this.access_token = access_token;
         this.rolGrupo = rolGrupo;
+        this.password = password;
+        this.nombre = nombre;
     }
 
     public String getUsername() {
@@ -50,5 +52,13 @@ public class Usuario {
 
     public void setRolGrupo(RolGrupo rolGrupo) {
         this.rolGrupo = rolGrupo;
+    }
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
     }
 }

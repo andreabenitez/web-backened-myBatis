@@ -32,12 +32,18 @@
         <id column="username" property="username" javaType="String"/>
         <result column="nombre" property="nombre" javaType="String"/>
         <result column="password" property="password" javaType="String"/>
+        <result column="access_token" property="access_token" javaType="String"/>
         <association property="rolGrupo" column="rol_grupo_id" resultMap="rolGrupoResult"/>
     </resultMap>
 
     <select id="getUsuarioByUsername" parameterType="String" resultMap="usuarioResult">
-        select username as username, usuario.nombre as nombre, password as password, rol_grupo.rol_grupo_id, rol_grupo.nombre_rol_grupo from usuario inner join rol_grupo on rol_grupo.rol_grupo_id = usuario.roles_grupo_id
+        select username as username, usuario.nombre as nombre, usuario.access_token as access_token, password as password, rol_grupo.rol_grupo_id, rol_grupo.nombre_rol_grupo from usuario inner join rol_grupo on rol_grupo.rol_grupo_id = usuario.roles_grupo_id
         where usuario.username = #{username};
+    </select>
+
+    <select id="getUsuarioByAccessToken" parameterType="String" resultMap="usuarioResult">
+        select username as username, usuario.nombre as nombre, password as password, rol_grupo.rol_grupo_id, rol_grupo.nombre_rol_grupo from usuario inner join rol_grupo on rol_grupo.rol_grupo_id = usuario.roles_grupo_id
+        where usuario.access_token = #{access_token};
     </select>
 
     <select id="getUsuarios" resultMap="usuarioResult">
@@ -48,6 +54,16 @@
        select *
           from roles_grupo_rol JOIN roles on roles_grupo_rol.rol_id=roles.rol_id where rol_grupo_id = #{id}
     </select>
+
+    <update id="modificarUsuario" parameterType="modelos.Usuario">
+        update usuario set
+        nombre = #{nombre},
+        password = #{password},
+        roles_grupo_id = #{rolGrupo.rol_grupo_id},
+        username = #{username},
+        access_token= #{access_token}
+        where username = #{username}
+    </update>
 
 
 </mapper>

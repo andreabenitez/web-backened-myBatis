@@ -12,7 +12,9 @@ public interface UsuarioMapper {
 
     List<Usuario> getUsuarios(Integer id);
     Usuario getUsuarioByUsername(String username);
+    Usuario getUsuarioByAccessToken(String accessToken);
     List<RolesGrupoRol> getRolesGrupoRol (Integer id);
+    int modificarUsuario(Usuario usuario);
 
 
 }
