@@ -8,15 +8,15 @@ import java.util.List;
 public class RolGrupo {
 
     private Integer rol_grupo_id;
-    private String nombre;
-    private List<RolesGrupoRol> rolesGrupoRolList;
+    private String nombreRol;
+    //private List<RolesGrupoRol> rolesGrupoRolList;
 
     public RolGrupo(){
     }
 
     public RolGrupo(Integer rol_grupo_id, String nombre) {
         this.rol_grupo_id = rol_grupo_id;
-        this.nombre = nombre;
+        this.nombreRol = nombre;
     }
 
     public Integer getRol_grupo_id() {
@@ -28,18 +28,18 @@ public class RolGrupo {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreRol;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreRol = nombre;
     }
 
-    public List<RolesGrupoRol> getRolesGrupoRolList() {
+    /*public List<RolesGrupoRol> getRolesGrupoRolList() {
         return rolesGrupoRolList;
     }
 
     public void setRolesGrupoRolList(List<RolesGrupoRol> rolesGrupoRolList) {
         this.rolesGrupoRolList = rolesGrupoRolList;
-    }
+    }*/
 }
