@@ -10,6 +10,8 @@ import utils.UsuarioUtil;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,13 +31,13 @@ public class UsuarioServicioMapperImpl {
     public List<Usuario> getUsuarios() {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
-            UsuarioMapper usuarioMapper = sqlSession.getMapper(UsuarioMapper.class);
             return sqlSession.selectList("getUsuarios");
         } finally {
             sqlSession.close();
         }
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Usuario getUsuarioByUsername(String username) {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
@@ -47,6 +49,7 @@ public class UsuarioServicioMapperImpl {
         }
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Usuario getUsuarioByAccessToken(String accessToken) {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
@@ -58,6 +61,7 @@ public class UsuarioServicioMapperImpl {
         }
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public int modificarUsuario(Usuario usuario){
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
@@ -67,6 +71,7 @@ public class UsuarioServicioMapperImpl {
         }
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public List<RolesGrupoRol> getRolesGrupoRol(Integer id) {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
@@ -77,6 +82,7 @@ public class UsuarioServicioMapperImpl {
         }
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public String authorization(UsuarioUtil usuarioUtil) throws NotAuthorizedException, Exception{
         boolean isAllowed = false;
 

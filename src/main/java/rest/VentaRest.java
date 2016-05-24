@@ -31,7 +31,12 @@ public class VentaRest {
         try {
             return ventaServicioMapper.agregarVenta(venta);
         }catch (VentaException e){
-            return Response.status(500).entity("Error al agregar la venta. " + e.getMessage()).build();
+            System.out.println("Error al crear la venta");
+            e.printStackTrace();
+            return Response.status(500).entity("Error al validar la venta. " + e.getMessage()).build();
+        }catch(Exception e){
+            return Response.status(500).entity("Error en la creacion de la venta. " + e.getMessage()).build();
+
         }
     }
 }

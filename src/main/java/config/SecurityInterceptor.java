@@ -16,6 +16,8 @@ import servicios.UsuarioServicioMapperImpl;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.HttpHeaders;
@@ -90,6 +92,7 @@ public class SecurityInterceptor implements PreProcessInterceptor
         System.out.println(username);
         System.out.println(password);*/
 
+
         //Verify user access
         if(method.isAnnotationPresent(RolesAllowed.class))
         {
@@ -107,6 +110,7 @@ public class SecurityInterceptor implements PreProcessInterceptor
         return null;
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     private boolean isUserAllowed(/*final String username, final String password,*/String access_token,	final Set<String> rolesSet)
     {
         boolean isAllowed = false;
@@ -115,6 +119,7 @@ public class SecurityInterceptor implements PreProcessInterceptor
 
         if(usuario != null) {
             RolGrupo rolGrupo = usuario.getRolGrupo();
+
             List<RolesGrupoRol> rolesGrupoRolList = usuarioServicioMapper.getRolesGrupoRol(rolGrupo.getRol_grupo_id());
             List<Roles> rolesListUsuario = new ArrayList<>();
             for (RolesGrupoRol rolesGrupoRol : rolesGrupoRolList){
@@ -123,6 +128,7 @@ public class SecurityInterceptor implements PreProcessInterceptor
 
             for(Roles roles : rolesListUsuario ){
                 if (rolesSet.contains(roles.getNombre())) {
+                    System.out.println("username:" + usuario.getUsername() + " operacion:" + roles.getNombre());
                     isAllowed = true;
                 }
             }

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by andrea on 26/04/16.
  */
-public class addCompra {
+public class CompraHelper {
 
     private Integer id_compra;
 

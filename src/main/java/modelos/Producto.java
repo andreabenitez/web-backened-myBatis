@@ -3,16 +3,13 @@
 package modelos;
 
 
-import java.io.Serializable;
-
 /*
  * Created by andrea on 27/02/16.
  */
 
 
-public class Producto implements Serializable {
+public class Producto  {
 
-    private static final long serialVersionUID = 5165621093422381650L;
 
     private Integer id_producto;
     //nombre debe ser unico

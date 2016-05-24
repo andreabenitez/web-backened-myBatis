@@ -78,25 +78,26 @@ public class CompraServicioMapperImpl {
     }
 
     public Validation validarCompra(Compra compra) throws IOException {
-        String errorMessagge = "";
+        //String errorMessagge = "";
+        StringBuffer errorMessagge = new StringBuffer();
         Boolean isError = false;
 
         if (compra.getCompraDetalles().isEmpty()) {
-            errorMessagge += "No hay ningun detalle en la compra. ";
+            errorMessagge.append("No hay ningun detalle en la compra. ") ;
             isError = true;
         }
 
         if (!(proveedorServicioMapper.countProveedor(compra.getId_proveedor()) > 0)) {
-            errorMessagge += "No hay ningun proveedor con id: " + compra.getId_proveedor();
+            errorMessagge.append( "No hay ningun proveedor con id: " + compra.getId_proveedor());
             isError = true;
         }
 
         for (CompraDetalle compraDetalle : compra.getCompraDetalles()) {
             Producto producto = productoServicioMapper.buscarProducto(compraDetalle.getId_producto());
             if (!(producto.getProveedor().getId_proveedor().equals(compra.getId_proveedor()))) {
-                errorMessagge += "El producto" + producto.toString() + "no pertenece al proveedor seleccionado: " + compra.getId_proveedor();
+                errorMessagge.append( "El producto" + producto.toString() + "no pertenece al proveedor seleccionado: " + compra.getId_proveedor());
             }
         }
-        return new Validation(isError, errorMessagge);
+        return new Validation(isError, errorMessagge.toString());
     }
 }

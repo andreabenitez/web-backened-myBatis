@@ -24,7 +24,6 @@ public class ClienteServicioMapperImpl {
     public List<Cliente> getClientes() throws IOException {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
-            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return sqlSession.selectList("getClientes");
         } finally {
             sqlSession.close();
@@ -44,7 +43,6 @@ public class ClienteServicioMapperImpl {
     public int agregarCliente(Cliente cliente) throws IOException {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
-            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return sqlSession.insert("agregarCliente", cliente);
         } finally {
             sqlSession.close();
@@ -54,7 +52,6 @@ public class ClienteServicioMapperImpl {
     public int modificarCliente(Cliente cliente) throws IOException {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
-            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return sqlSession.update("modificarCliente", cliente);
         } finally {
             sqlSession.close();
@@ -64,8 +61,6 @@ public class ClienteServicioMapperImpl {
     public int eliminarCliente(Integer id) throws IOException {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
-
-            ClienteMapper clienteMapper = sqlSession.getMapper(ClienteMapper.class);
             return sqlSession.delete("eliminarCliente", id);
         } finally {
             sqlSession.close();

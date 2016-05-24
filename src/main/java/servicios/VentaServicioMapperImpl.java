@@ -58,7 +58,7 @@ public class VentaServicioMapperImpl  {
                         Producto producto = productoServicioMapper.buscarProducto(ventaDetalle.getId_producto());
                         producto.setCantidad(producto.getCantidad() - ventaDetalle.getCantidad());
                         productoServicioMapper.modificarProducto(producto);
-                        total = total + (producto.getPrecioUnitario() * ventaDetalle.getCantidad()) * new Float(1.1);
+                        total = total + (producto.getPrecioUnitario() * ventaDetalle.getCantidad());
                     }
                     sqlSession.insert("insertVentaDetalles", venta);
 

@@ -58,7 +58,6 @@ public class ProductoServicioMapperImpl  {
         SqlSession sqlSession = sqlSessionFactoryProvider.getSqlSessionFactory().openSession();
         try {
             ProveedorMapper proveedorMapper = sqlSession.getMapper(ProveedorMapper.class);
-            ProductoMapper productoMapper = sqlSession.getMapper(ProductoMapper.class);
             try {
 
                 Proveedor proveedor = proveedorMapper.getProveedor(producto.getProveedor().getId_proveedor());
